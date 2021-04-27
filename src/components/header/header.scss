@@ -1,13 +1,51 @@
+@import url('../../index.css');
+
 .header {
-  background-color: rgb(245, 241, 241);
+  background-color: rgb(99, 99, 129);
   height: 70px;
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: white;
 
-  &__logo {
-    font-size: 25px;
-    color: aqua;
+  &__label {
+    margin-left: 35px;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  &__fav {
+    margin-right: 35px;
+    padding: 4px 10px;
+    border: 2px white solid;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.1s linear;
+
+    &:hover {
+      background-color: rgb(114, 114, 192);
+      border-color: rgb(114, 114, 192);
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    &__label {
+      font-size: 25px;
+      margin-left: 10px;
+    }
+    &__fav {
+      margin-right: 10px;
+      font-size: 12px;
+    }
   }
 }

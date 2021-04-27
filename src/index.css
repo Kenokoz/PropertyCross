@@ -1,6 +1,9 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  background: url('https://profitweb.ru/wp-content/uploads/2018/08/cropped-1605586439-polyagonal-web-design1.jpg')
+    center no-repeat;
+  background-size: cover;
 }
 
 *,
@@ -9,11 +12,17 @@ body {
   box-sizing: border-box;
 }
 
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
 .container {
   max-width: 80%;
+  height: 100vh;
   margin: 0 auto;
 }
