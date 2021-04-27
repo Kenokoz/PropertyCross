@@ -1,0 +1,32 @@
+.searches {
+  &__title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  &__wrapper {
+    min-height: 100px;
+    margin-top: 15px;
+    border: 2px rgb(99, 99, 129) solid;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  &__item {
+    display: block;
+    margin-top: 5px;
+    padding-left: 10px;
+    font-size: 20px;
+    transition: color 0.1s linear;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      color: rgb(114, 114, 192);
+    }
+
+    &:last-child {
+      margin-bottom: 5px;
+    }
+  }
+}

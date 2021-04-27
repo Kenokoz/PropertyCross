@@ -19,7 +19,7 @@ const optimization = () => {
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
@@ -28,7 +28,7 @@ module.exports = {
   optimization: optimization(),
   devtool: isDev ? 'source-map' : false,
   resolve: {
-    extensions: ['.js', '.tsx', '.png', 'json'],
+    extensions: ['.js', '.ts', '.tsx', '.png', 'json'],
   },
   module: {
     rules: [
@@ -36,6 +36,13 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [{ loader: 'babel-loader' }, { loader: 'eslint-loader' }],
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
       },
       {
         test: /\.tsx$/,
