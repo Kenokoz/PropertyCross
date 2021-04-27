@@ -15,13 +15,14 @@
 
   &__goBtn,
   &__locBtn {
+    display: inline-block;
     width: 200px;
     padding: 12px 10px;
     background-color: rgb(99, 99, 129);
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.1s linear;
+    text-decoration: none;
     color: white;
     font-size: 20px;
 
