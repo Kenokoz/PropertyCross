@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './RecentSearches.scss';
 
-const RecentSearches = () => (
+const RecentSearches: React.FC = () => (
   <div className="search__recent">
     <div className="searches">
       <div className="searches__title">Recent searches:</div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './SearchForm.scss';
 
-const SearchForm = () => (
+const SearchForm: React.FC = () => (
   <div className="search__form">
     <form className="form">
       <div className="form__wrapper">

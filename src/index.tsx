@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
+import './index.css';
 import SearchProperty from './components/searchProperty/SearchProperty';
 import PropertyList from './components/propertyList/PropertyList';
 import Favorites from './components/favorites/Favorites';
-import './index.css';
+import { store } from './store';
 
 const App = () => (
   <Router>
@@ -17,4 +19,9 @@ const App = () => (
   </Router>
 );
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);

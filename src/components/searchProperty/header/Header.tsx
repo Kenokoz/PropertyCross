@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './Header.scss';
 
-const Header = () => (
+const Header: React.FC = () => (
   <header className="header">
     <Link className="header__label" to="/">
       PropertyCross

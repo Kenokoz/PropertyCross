@@ -4,8 +4,9 @@ import SearchForm from './searchForm/SearchForm';
 import RecentSearches from './recentSearches/RecentSearches';
 import './SearchProperty.scss';
 import Header from './header/Header';
+import LocationList from './locationList/LocationList';
 
-const SearchProperty = () => (
+const SearchProperty: React.FC = () => (
   <div className="container">
     <Header />
     <section className="search">
@@ -16,6 +17,7 @@ const SearchProperty = () => (
       </div>
       <SearchForm />
       <RecentSearches />
+      <LocationList />
     </section>
   </div>
 );
