@@ -6,18 +6,22 @@ import RecentSearches from './recentSearches/RecentSearches';
 import Header from './header/Header';
 import LocationList from './locationList/LocationList';
 import './SearchProperty.scss';
-import {
-  SearchPropertyActionTypes,
-  SearchPropertyState,
-} from '../../types/searchProperty';
+import { SearchPropertyActionTypes } from '../../types/searchProperty';
 
 interface SearchPropertyProps {
+  inputValue: string;
   showLocations: boolean;
+  locations: any[];
   onShowLocations: () => void;
+  onInputChanged: () => void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = props => {
-  const items = props.showLocations ? <LocationList /> : <RecentSearches />;
+  const items = props.showLocations ? (
+    <LocationList locationName={props.inputValue} />
+  ) : (
+    <RecentSearches />
+  );
 
   return (
     <div className="container">
@@ -28,7 +32,12 @@ const SearchProperty: React.FC<SearchPropertyProps> = props => {
           place-name, postcode, or click &#39;My location&#39;, to search in
           your current location!
         </div>
-        <SearchForm onGo={props.onShowLocations} />
+        <SearchForm
+          onGo={props.onShowLocations}
+          onInputChanged={props.onInputChanged}
+          locationName={props.inputValue}
+          locations={props.locations}
+        />
         {items}
       </section>
     </div>
@@ -44,8 +53,16 @@ const mapStateToProps = ({ searchProperty }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onShowLocations: e => {
-      e.preventDefault();
+    onInputChanged: ({ target }) => {
+      dispatch({
+        type: SearchPropertyActionTypes.INPUT_CHANGED,
+        payload: target.value,
+      });
+    },
+    onShowLocations: (e, locName, locations) => {
+      if (!locName) {
+        e.preventDefault();
+      }
       dispatch({
         type: SearchPropertyActionTypes.SHOW_LOCATIONS,
         payload: true,

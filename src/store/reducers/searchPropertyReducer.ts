@@ -25,6 +25,11 @@ export const searchPropertyReducer = (
         ...state,
         showLocations: action.payload,
       };
+    case SearchPropertyActionTypes.INPUT_CHANGED:
+      return {
+        ...state,
+        inputValue: action.payload,
+      };
     default:
       return state;
   }

@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 
 interface LocationListProps {
   locations: any[];
+  locationName: string;
 }
 
 const LocationList: React.FC<LocationListProps> = props => {
   return (
-    <>
-      <div className="searches__title">Recent searches:</div>
+    <div className="search__recent">
+      <div className="searches__title">Please select a location below:</div>
       <div className="searches__wrapper">
         {props.locations.map(loc => (
           <Link
@@ -21,7 +22,7 @@ const LocationList: React.FC<LocationListProps> = props => {
           </Link>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
