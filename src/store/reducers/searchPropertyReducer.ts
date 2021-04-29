@@ -1,11 +1,18 @@
 import {
   SearchPropertyAction,
   SearchPropertyState,
-  CHANGED_INPUT,
+  SearchPropertyActionTypes,
 } from '../../types/searchProperty';
 
 const initialState: SearchPropertyState = {
   inputValue: '',
+  showLocations: false,
+  locations: [
+    { name: 'Albury, Guildford', id: 'albury_guildford' },
+    { name: 'Albury, Newbury', id: 'albury_newbury' },
+    { name: 'Albury, Ware', id: 'albury_ware' },
+    { name: 'Shifnal', id: 'shifnal' },
+  ],
 };
 
 export const searchPropertyReducer = (
@@ -13,10 +20,10 @@ export const searchPropertyReducer = (
   action: SearchPropertyAction
 ): SearchPropertyState => {
   switch (action.type) {
-    case CHANGED_INPUT:
+    case SearchPropertyActionTypes.SHOW_LOCATIONS:
       return {
         ...state,
-        inputValue: action.payload,
+        showLocations: action.payload,
       };
     default:
       return state;

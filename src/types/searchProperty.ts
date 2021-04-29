@@ -1,13 +1,14 @@
-export enum PropertyActionTypes {
-  CHANGED_INPUT = 'CHANGED_INPUT',
+export enum SearchPropertyActionTypes {
   SHOW_LOCATIONS = 'SHOW_LOCATIONS',
 }
 
 export interface SearchPropertyState {
   inputValue: string;
+  showLocations: boolean;
+  locations: any[];
 }
 
 export type SearchPropertyAction = {
-  type: PropertyActionTypes.CHANGED_INPUT;
-  payload: string;
+  type: SearchPropertyActionTypes.SHOW_LOCATIONS;
+  payload: boolean;
 };

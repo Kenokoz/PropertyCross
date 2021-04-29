@@ -1,21 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import './SearchForm.scss';
 
-const SearchForm: React.FC = () => (
+interface SearchFormProps {
+  onGo: (e) => void;
+}
+
+const SearchForm: React.FC<SearchFormProps> = props => (
   <div className="search__form">
     <form className="form">
       <div className="form__wrapper">
         <input className="form__input" type="text" placeholder="Name" />
       </div>
       <div className="form__wrapper">
-        <Link className="form__goBtn" to="/search">
+        <button
+          className="form__goBtn"
+          type="submit"
+          onClick={e => props.onGo(e)}
+        >
           Go
-        </Link>
-        <Link className="form__locBtn" to="/location">
-          My&#160;location
-        </Link>
+        </button>
+        <button className="form__locBtn">My&#160;location</button>
       </div>
     </form>
   </div>
