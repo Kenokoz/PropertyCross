@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
-import { locationReducer } from './locationReducer';
+import { propertyReducer } from './propertyReducer';
+import { searchPropertyReducer } from './searchPropertyReducer';
 
 export const rootReducer = combineReducers({
-  location: locationReducer,
+  property: propertyReducer,
+  searchProperty: searchPropertyReducer,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
