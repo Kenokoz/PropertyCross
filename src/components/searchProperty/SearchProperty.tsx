@@ -48,6 +48,7 @@ const mapStateToProps = ({ searchProperty }) => {
   return {
     inputValue: searchProperty.inputValue,
     showLocations: searchProperty.showLocations,
+    locations: searchProperty.locations,
   };
 };
 
@@ -60,9 +61,12 @@ const mapDispatchToProps = dispatch => {
       });
     },
     onShowLocations: (e, locName, locations) => {
-      if (!locName) {
-        e.preventDefault();
-      }
+      const isExist = locations.find(
+        loc => loc.name.toLowerCase() === locName.toLowerCase()
+      );
+
+      isExist ? null : e.preventDefault();
+
       dispatch({
         type: SearchPropertyActionTypes.SHOW_LOCATIONS,
         payload: true,
