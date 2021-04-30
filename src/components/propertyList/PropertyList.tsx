@@ -1,17 +1,21 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchProperties } from '../../store/actionCreators/property';
 import './PropertyList.scss';
 
-const PropertyList: React.FC = () => {
+interface PropertyListProps {
+  selectedLocation: string;
+}
+
+const PropertyList: React.FC<PropertyListProps> = ({ selectedLocation }) => {
   const { properties, loading, error } = usedTypedSelector(
     state => state.property
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProperties());
+    dispatch(fetchProperties(selectedLocation));
   }, []);
 
   if (loading) {
@@ -22,12 +26,16 @@ const PropertyList: React.FC = () => {
   }
 
   return (
-    <div>
+    <>
       {properties.map(({ id, title }) => (
         <div key={id}>{title}</div>
       ))}
-    </div>
+    </>
   );
 };
 
-export default PropertyList;
+const mapToStateProps = ({ searchProperty }) => ({
+  selectedLocation: searchProperty.selectedLocation,
+});
+
+export default connect(mapToStateProps)(PropertyList);

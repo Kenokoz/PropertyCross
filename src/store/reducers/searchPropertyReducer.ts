@@ -13,6 +13,7 @@ const initialState: SearchPropertyState = {
     { name: 'Albury, Ware', id: 'albury_ware' },
     { name: 'Shifnal', id: 'shifnal' },
   ],
+  selectedLocation: '',
 };
 
 export const searchPropertyReducer = (
@@ -29,6 +30,11 @@ export const searchPropertyReducer = (
       return {
         ...state,
         inputValue: action.payload,
+      };
+    case SearchPropertyActionTypes.SELECT_LOCATION:
+      return {
+        ...state,
+        selectedLocation: action.payload,
       };
     default:
       return state;

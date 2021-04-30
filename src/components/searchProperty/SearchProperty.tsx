@@ -9,25 +9,24 @@ import {
   onInputChanged,
   onShowLocations,
 } from '../../store/actionCreators/searchProperty';
+import { Location } from '../../types/location';
 import './SearchProperty.scss';
 
 interface SearchPropertyProps {
   inputValue: string;
   showLocations: boolean;
-  locations: { name: string; id: string }[];
+  locations: Location[];
   onShowLocations(): void;
   onInputChanged(): void;
 }
 
-const SearchProperty: React.FC<SearchPropertyProps> = props => {
-  const {
-    showLocations,
-    inputValue,
-    locations,
-    onShowLocations,
-    onInputChanged,
-  } = props;
-
+const SearchProperty: React.FC<SearchPropertyProps> = ({
+  showLocations,
+  inputValue,
+  locations,
+  onShowLocations,
+  onInputChanged,
+}) => {
   const items = showLocations ? (
     <LocationList locationName={inputValue} />
   ) : (

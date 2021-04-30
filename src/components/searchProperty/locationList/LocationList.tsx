@@ -2,8 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { Location } from '../../../types/location';
+
 interface LocationListProps {
-  locations: { name: string; id: string }[];
+  locations: Location[];
   locationName: string;
 }
 
@@ -11,13 +13,13 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => (
   <div className="list">
     <div className="list__title">Please select a location below:</div>
     <div className="list__wrapper">
-      {locations.map(loc => (
+      {locations.map(({ id, name }) => (
         <Link
           className="list__item"
-          to={`locations/${loc.id}/properties?page=1`}
-          key={loc.id}
+          to={`locations/${id}/properties?page=1`}
+          key={id}
         >
-          {loc.name}
+          {name}
         </Link>
       ))}
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Location } from '../../../types/location';
 
 import './SearchForm.scss';
 
@@ -7,7 +8,7 @@ interface SearchFormProps {
   onGo: (e, locName, locations) => void;
   onInputChanged: (e) => void;
   locationName: string;
-  locations: { name: string; id: string }[];
+  locations: Location[];
 }
 
 const SearchForm: React.FC<SearchFormProps> = props => {
