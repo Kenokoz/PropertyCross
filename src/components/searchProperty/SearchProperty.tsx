@@ -5,8 +5,10 @@ import SearchForm from './searchForm/SearchForm';
 import RecentSearches from './recentSearches/RecentSearches';
 import Header from './header/Header';
 import LocationList from './locationList/LocationList';
-import { SearchPropertyActionTypes } from '../../types/searchProperty';
-import { onInputChanged } from '../../store/actionCreators/searchProperty';
+import {
+  onInputChanged,
+  onShowLocations,
+} from '../../store/actionCreators/searchProperty';
 import './SearchProperty.scss';
 
 interface SearchPropertyProps {
@@ -61,19 +63,9 @@ const mapStateToProps = ({ searchProperty }) => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onInputChanged, //  как передать dispatch?
-    onShowLocations: (e, locName, locations) => {
-      const isExist = locations.find(
-        loc => loc.name.toLowerCase() === locName.toLowerCase()
-      );
-
-      isExist ? null : e.preventDefault();
-
-      dispatch({
-        type: SearchPropertyActionTypes.SHOW_LOCATIONS,
-        payload: true,
-      });
-    },
+    onInputChanged: e => onInputChanged(dispatch, e),
+    onShowLocations: (e, locName, locations) =>
+      onShowLocations(dispatch, e, locName, locations),
   };
 };
 
