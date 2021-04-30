@@ -23,8 +23,8 @@ const PropertyList: React.FC = () => {
 
   return (
     <div>
-      {properties.map(prop => (
-        <div key={prop.id}>{prop.title}</div>
+      {properties.map(({ id, title }) => (
+        <div key={id}>{title}</div>
       ))}
     </div>
   );

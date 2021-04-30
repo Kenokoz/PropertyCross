@@ -6,7 +6,7 @@ export enum SearchPropertyActionTypes {
 export interface SearchPropertyState {
   inputValue: string;
   showLocations: boolean;
-  locations: any[];
+  locations: { name: string; id: string }[];
 }
 
 interface SearchShowLocation {

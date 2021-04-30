@@ -16,7 +16,7 @@ interface FetchPropertiesAction {
 
 interface FetchPropertiesSuccessAction {
   type: PropertyActionTypes.FETCH_PROPERTIES_SUCCESS;
-  payload: any[];
+  payload: { name: string; id: string }[];
 }
 
 interface FetchPropertiesErrorAction {

@@ -5,20 +5,29 @@ import SearchForm from './searchForm/SearchForm';
 import RecentSearches from './recentSearches/RecentSearches';
 import Header from './header/Header';
 import LocationList from './locationList/LocationList';
-import './SearchProperty.scss';
 import { SearchPropertyActionTypes } from '../../types/searchProperty';
+import { onInputChanged } from '../../store/actionCreators/searchProperty';
+import './SearchProperty.scss';
 
 interface SearchPropertyProps {
   inputValue: string;
   showLocations: boolean;
-  locations: any[];
-  onShowLocations: () => void;
-  onInputChanged: () => void;
+  locations: { name: string; id: string }[];
+  onShowLocations(): void;
+  onInputChanged(): void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = props => {
-  const items = props.showLocations ? (
-    <LocationList locationName={props.inputValue} />
+  const {
+    showLocations,
+    inputValue,
+    locations,
+    onShowLocations,
+    onInputChanged,
+  } = props;
+
+  const items = showLocations ? (
+    <LocationList locationName={inputValue} />
   ) : (
     <RecentSearches />
   );
@@ -33,10 +42,10 @@ const SearchProperty: React.FC<SearchPropertyProps> = props => {
           your current location!
         </div>
         <SearchForm
-          onGo={props.onShowLocations}
-          onInputChanged={props.onInputChanged}
-          locationName={props.inputValue}
-          locations={props.locations}
+          onGo={onShowLocations}
+          onInputChanged={onInputChanged}
+          locationName={inputValue}
+          locations={locations}
         />
         {items}
       </section>
@@ -44,22 +53,15 @@ const SearchProperty: React.FC<SearchPropertyProps> = props => {
   );
 };
 
-const mapStateToProps = ({ searchProperty }) => {
-  return {
-    inputValue: searchProperty.inputValue,
-    showLocations: searchProperty.showLocations,
-    locations: searchProperty.locations,
-  };
-};
+const mapStateToProps = ({ searchProperty }) => ({
+  inputValue: searchProperty.inputValue,
+  showLocations: searchProperty.showLocations,
+  locations: searchProperty.locations,
+});
 
 const mapDispatchToProps = dispatch => {
   return {
-    onInputChanged: ({ target }) => {
-      dispatch({
-        type: SearchPropertyActionTypes.INPUT_CHANGED,
-        payload: target.value,
-      });
-    },
+    onInputChanged, //  как передать dispatch?
     onShowLocations: (e, locName, locations) => {
       const isExist = locations.find(
         loc => loc.name.toLowerCase() === locName.toLowerCase()
