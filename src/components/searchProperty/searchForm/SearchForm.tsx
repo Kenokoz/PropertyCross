@@ -29,7 +29,7 @@ const SearchForm: React.FC<SearchFormProps> = props => {
         </div>
         <div className="form__wrapper">
           <Link
-            to="/search"
+            to={`/locations/${locationName}`}
             className="form__goBtn"
             type="submit"
             onClick={clickedGo}

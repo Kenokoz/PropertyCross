@@ -14,11 +14,7 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => (
     <div className="list__title">Please select a location below:</div>
     <div className="list__wrapper">
       {locations.map(({ id, name }) => (
-        <Link
-          className="list__item"
-          to={`locations/${id}/properties?page=1`}
-          key={id}
-        >
+        <Link className="list__item" to={`locations/${id}`} key={id}>
           {name}
         </Link>
       ))}
