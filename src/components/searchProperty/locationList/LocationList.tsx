@@ -8,12 +8,12 @@ interface LocationListProps {
 }
 
 const LocationList: React.FC<LocationListProps> = ({ locations }) => (
-  <div className="search__recent">
-    <div className="searches__title">Please select a location below:</div>
-    <div className="searches__wrapper">
+  <div className="list">
+    <div className="list__title">Please select a location below:</div>
+    <div className="list__wrapper">
       {locations.map(loc => (
         <Link
-          className="searches__item"
+          className="list__item"
           to={`locations/${loc.id}/properties?page=1`}
           key={loc.id}
         >
