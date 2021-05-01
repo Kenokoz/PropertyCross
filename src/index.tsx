@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import './index.css';
+import './assets/styles/index.scss';
 import SearchProperty from './components/searchProperty/SearchProperty';
 import PropertyList from './components/propertyList/PropertyList';
 import Favorites from './components/favorites/Favorites';

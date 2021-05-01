@@ -1,7 +1,8 @@
-@import url('../../../index.css');
+@import '../../../assets/styles/constants';
+@import '../../../assets/styles/index';
 
 .header {
-  background-color: rgb(99, 99, 129);
+  background-color: $base-color;
   height: 70px;
   display: flex;
   justify-content: space-between;
