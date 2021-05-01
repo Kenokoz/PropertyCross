@@ -5,19 +5,23 @@ import { Location } from '../../../types/location';
 import './SearchForm.scss';
 
 interface SearchFormProps {
-  onGo: (e: MouseEvent, locName: string, locations: Location[]) => void;
+  onGo: (
+    e: MouseEvent,
+    locations: Location[],
+    inputLocationName: string
+  ) => void;
   onInputChanged: (e: ChangeEvent) => void;
-  locationName: string;
+  inputLocationName: string;
   locations: Location[];
 }
 
 const SearchForm: React.FC<SearchFormProps> = ({
   onInputChanged,
   onGo,
-  locationName,
   locations,
+  inputLocationName,
 }) => {
-  const clickedGo = (e: MouseEvent) => onGo(e, locationName, locations);
+  const clickedGo = (e: MouseEvent) => onGo(e, locations, inputLocationName);
 
   return (
     <div className="search__form">
@@ -32,7 +36,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
         </div>
         <div className="form__wrapper">
           <Link
-            to={`/locations/${locationName}`}
+            to={`/locations/${inputLocationName}`}
             className="form__goBtn"
             type="submit"
             onClick={clickedGo}

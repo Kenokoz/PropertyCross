@@ -13,7 +13,7 @@ const initialState: SearchPropertyState = {
     { name: 'Albury, Ware', id: 'albury_ware' },
     { name: 'Shifnal', id: 'shifnal' },
   ],
-  selectedLocation: '',
+  selectedLocation: { name: '', id: '' },
 };
 
 export const searchPropertyReducer = (

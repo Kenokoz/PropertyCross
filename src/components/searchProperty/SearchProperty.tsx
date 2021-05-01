@@ -7,7 +7,7 @@ import Header from './header/Header';
 import LocationList from './locationList/LocationList';
 import {
   onInputChanged,
-  onShowLocations,
+  onGoClicked,
 } from '../../store/actionCreators/searchProperty';
 import { Location } from '../../types/location';
 import './SearchProperty.scss';
@@ -17,15 +17,19 @@ interface SearchPropertyProps {
   showLocations: boolean;
   locations: Location[];
   onInputChanged(e: ChangeEvent): void;
-  onShowLocations(e: MouseEvent, locName: string, locations: Location[]): void;
+  onGoClicked(
+    e: MouseEvent,
+    locations: Location[],
+    inputLocationName: string
+  ): void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = ({
   showLocations,
   inputValue,
   locations,
-  onShowLocations,
   onInputChanged,
+  onGoClicked,
 }) => {
   const items = showLocations ? (
     <LocationList locationName={inputValue} />
@@ -43,9 +47,9 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
           your current location!
         </div>
         <SearchForm
-          onGo={onShowLocations}
+          onGo={onGoClicked}
           onInputChanged={onInputChanged}
-          locationName={inputValue}
+          inputLocationName={inputValue}
           locations={locations}
         />
         {items}
@@ -59,6 +63,6 @@ const mapStateToProps = ({ searchProperty }) => ({
   showLocations: searchProperty.showLocations,
   locations: searchProperty.locations,
 });
-const mapDispatchToProps = { onInputChanged, onShowLocations };
+const mapDispatchToProps = { onInputChanged, onGoClicked };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);

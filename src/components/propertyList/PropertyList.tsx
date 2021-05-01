@@ -2,12 +2,13 @@ import React, { useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../hooks/useTypedSelector';
-import { fetchProperties } from '../../store/actionCreators/property';
+import { getProperties } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
+import { Location } from '../../types/location';
 import './PropertyList.scss';
 
 interface PropertyListProps {
-  selectedLocation: string;
+  selectedLocation: Location;
 }
 
 const PropertyList: React.FC<PropertyListProps> = ({ selectedLocation }) => {
@@ -16,7 +17,7 @@ const PropertyList: React.FC<PropertyListProps> = ({ selectedLocation }) => {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchProperties(selectedLocation));
+    dispatch(getProperties(selectedLocation));
   }, []);
 
   if (loading) {

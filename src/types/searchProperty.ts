@@ -1,3 +1,5 @@
+import { Location } from './location';
+
 export enum SearchPropertyActionTypes {
   SHOW_LOCATIONS = 'SHOW_LOCATIONS',
   INPUT_CHANGED = 'INPUT_CHANGED',
@@ -7,8 +9,8 @@ export enum SearchPropertyActionTypes {
 export interface SearchPropertyState {
   inputValue: string;
   showLocations: boolean;
-  locations: { name: string; id: string }[];
-  selectedLocation: string;
+  locations: Location[];
+  selectedLocation: Location;
 }
 
 interface SearchShowLocation {
@@ -23,7 +25,7 @@ interface SearchInputChanged {
 
 interface SearchSelectLocation {
   type: SearchPropertyActionTypes.SELECT_LOCATION;
-  payload: string;
+  payload: Location;
 }
 
 export type SearchPropertyAction =

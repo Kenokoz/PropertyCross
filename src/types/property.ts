@@ -1,3 +1,5 @@
+import { Location } from './location';
+
 export interface PropertyState {
   properties: any[];
   loading: boolean;
@@ -10,13 +12,20 @@ export enum PropertyActionTypes {
   FETCH_PROPERTIES_ERROR = 'FETCH_PROPERTIES_ERROR',
 }
 
+export interface Request {
+  location: Location;
+  getData(data): PropertyAction;
+  getDataError(error): PropertyAction;
+}
+
 interface FetchPropertiesAction {
   type: PropertyActionTypes.FETCH_PROPERTIES;
+  request: Request;
 }
 
 interface FetchPropertiesSuccessAction {
   type: PropertyActionTypes.FETCH_PROPERTIES_SUCCESS;
-  payload: { name: string; id: string }[];
+  payload: Location[];
 }
 
 interface FetchPropertiesErrorAction {

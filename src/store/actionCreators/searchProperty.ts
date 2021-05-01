@@ -13,24 +13,27 @@ export const onInputChanged = (
   payload: e.target.value,
 });
 
-const onGetProperties = (location: Location) => ({
+const onGetProperties = (location: Location): SearchPropertyAction => ({
   type: SearchPropertyActionTypes.SELECT_LOCATION,
-  payload: location.id,
+  payload: location,
 });
 
-export const onShowLocations = (
-  e: MouseEvent,
-  locName: string,
-  locations: Location[]
-): SearchPropertyAction => {
-  const isExist: Location = locations.find(
-    loc => loc.name.toLowerCase() === locName.toLowerCase()
-  );
-
-  isExist ? onGetProperties(isExist) : e.preventDefault();
-
+const onShowLocations = (e: MouseEvent): SearchPropertyAction => {
+  e.preventDefault();
   return {
     type: SearchPropertyActionTypes.SHOW_LOCATIONS,
     payload: true,
   };
+};
+
+export const onGoClicked = (
+  e: MouseEvent,
+  locations: Location[],
+  inputLocationName: string
+): SearchPropertyAction => {
+  const foundLocation: Location = locations.find(
+    loc => loc.name.toLowerCase() === inputLocationName.toLowerCase()
+  );
+
+  return foundLocation ? onGetProperties(foundLocation) : onShowLocations(e);
 };
