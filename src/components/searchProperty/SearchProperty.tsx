@@ -16,8 +16,8 @@ interface SearchPropertyProps {
   inputValue: string;
   showLocations: boolean;
   locations: Location[];
-  onShowLocations(): void;
-  onInputChanged(): void;
+  onInputChanged(e): void;
+  onShowLocations(e, locName, locations): void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = ({
@@ -59,13 +59,6 @@ const mapStateToProps = ({ searchProperty }) => ({
   showLocations: searchProperty.showLocations,
   locations: searchProperty.locations,
 });
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onInputChanged: e => onInputChanged(dispatch, e),
-    onShowLocations: (e, locName, locations) =>
-      onShowLocations(dispatch, e, locName, locations),
-  };
-};
+const mapDispatchToProps = { onInputChanged, onShowLocations };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);
