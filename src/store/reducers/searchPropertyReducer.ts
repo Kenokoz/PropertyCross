@@ -36,6 +36,11 @@ export const searchPropertyReducer = (
         ...state,
         selectedLocation: action.payload,
       };
+    case SearchPropertyActionTypes.LOCATION_CLICKED:
+      return {
+        ...state,
+        selectedLocation: action.payload,
+      };
     default:
       return state;
   }

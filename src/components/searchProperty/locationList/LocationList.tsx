@@ -7,15 +7,23 @@ import { Location } from '../../../types/location';
 
 interface LocationListProps {
   locations: Location[];
-  locationName: string;
+  onClicked(location: Location): void;
 }
 
-const LocationList: React.FC<LocationListProps> = ({ locations }) => (
+const LocationList: React.FC<LocationListProps> = ({
+  locations,
+  onClicked,
+}) => (
   <div className="list">
     <div className="list__title">Please select a location below:</div>
     <div className="list__wrapper">
       {locations.map(({ id, name }) => (
-        <Link className="list__item" to={`locations/${id}`} key={id}>
+        <Link
+          className="list__item"
+          to={`locations/${id}`}
+          key={id}
+          onClick={() => onClicked({ name, id })}
+        >
           {name}
         </Link>
       ))}
@@ -23,8 +31,8 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => (
   </div>
 );
 
-const mapStateToProps = ({ searchProperty }: RootState) => ({
-  locations: searchProperty.locations,
+const mapStateToProps = (state: RootState) => ({
+  locations: state.searchProperty.locations,
 });
 
 export default connect(mapStateToProps)(LocationList);

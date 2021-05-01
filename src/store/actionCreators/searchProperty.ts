@@ -37,3 +37,10 @@ export const onGoClicked = (
 
   return foundLocation ? onGetProperties(foundLocation) : onShowLocations(e);
 };
+
+export const onLocationClicked = (
+  location: Location
+): SearchPropertyAction => ({
+  type: SearchPropertyActionTypes.LOCATION_CLICKED,
+  payload: location,
+});

@@ -8,20 +8,24 @@ import LocationList from './locationList/LocationList';
 import {
   onInputChanged,
   onGoClicked,
+  onLocationClicked,
 } from '../../store/actionCreators/searchProperty';
 import { Location } from '../../types/location';
 import './SearchProperty.scss';
+import { SearchPropertyState } from '../../types/searchProperty';
 
 interface SearchPropertyProps {
   inputValue: string;
   showLocations: boolean;
   locations: Location[];
+  location: Location;
   onInputChanged(e: ChangeEvent): void;
   onGoClicked(
     e: MouseEvent,
     locations: Location[],
     inputLocationName: string
   ): void;
+  onLocationClicked(location: Location): void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = ({
@@ -30,9 +34,10 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   locations,
   onInputChanged,
   onGoClicked,
+  onLocationClicked,
 }) => {
   const items = showLocations ? (
-    <LocationList locationName={inputValue} />
+    <LocationList onClicked={onLocationClicked} />
   ) : (
     <RecentSearches />
   );
@@ -58,11 +63,16 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   );
 };
 
-const mapStateToProps = ({ searchProperty }) => ({
+const mapStateToProps = ({
+  searchProperty,
+}: {
+  searchProperty: SearchPropertyState;
+}) => ({
   inputValue: searchProperty.inputValue,
   showLocations: searchProperty.showLocations,
   locations: searchProperty.locations,
+  location: searchProperty.selectedLocation,
 });
-const mapDispatchToProps = { onInputChanged, onGoClicked };
+const mapDispatchToProps = { onInputChanged, onGoClicked, onLocationClicked };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);

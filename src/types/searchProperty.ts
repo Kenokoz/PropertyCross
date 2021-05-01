@@ -4,6 +4,7 @@ export enum SearchPropertyActionTypes {
   SHOW_LOCATIONS = 'SHOW_LOCATIONS',
   INPUT_CHANGED = 'INPUT_CHANGED',
   SELECT_LOCATION = 'SELECT_LOCATION',
+  LOCATION_CLICKED = 'LOCATION_CLICKED',
 }
 
 export interface SearchPropertyState {
@@ -28,7 +29,13 @@ interface SearchSelectLocation {
   payload: Location;
 }
 
+interface SearchLocationClicked {
+  type: SearchPropertyActionTypes.LOCATION_CLICKED;
+  payload: Location;
+}
+
 export type SearchPropertyAction =
   | SearchShowLocation
   | SearchInputChanged
-  | SearchSelectLocation;
+  | SearchSelectLocation
+  | SearchLocationClicked;
