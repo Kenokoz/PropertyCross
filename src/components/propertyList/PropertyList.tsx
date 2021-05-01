@@ -3,6 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../hooks/useTypedSelector';
 import { fetchProperties } from '../../store/actionCreators/property';
+import { RootState } from '../../store/reducers/combineReducer';
 import './PropertyList.scss';
 
 interface PropertyListProps {
@@ -34,7 +35,7 @@ const PropertyList: React.FC<PropertyListProps> = ({ selectedLocation }) => {
   );
 };
 
-const mapToStateProps = ({ searchProperty }) => ({
+const mapToStateProps = ({ searchProperty }: RootState) => ({
   selectedLocation: searchProperty.selectedLocation,
 });
 

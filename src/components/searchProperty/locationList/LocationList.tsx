@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { RootState } from '../../../store/reducers/combineReducer';
 import { Location } from '../../../types/location';
 
 interface LocationListProps {
@@ -22,7 +23,7 @@ const LocationList: React.FC<LocationListProps> = ({ locations }) => (
   </div>
 );
 
-const mapStateToProps = ({ searchProperty }) => ({
+const mapStateToProps = ({ searchProperty }: RootState) => ({
   locations: searchProperty.locations,
 });
 

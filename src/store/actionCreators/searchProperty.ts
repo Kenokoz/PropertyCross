@@ -1,21 +1,28 @@
+import { ChangeEvent, MouseEvent } from 'react';
+
 import { Location } from '../../types/location';
-import { SearchPropertyActionTypes } from '../../types/searchProperty';
+import {
+  SearchPropertyActionTypes,
+  SearchPropertyAction,
+} from '../../types/searchProperty';
 
-export const onInputChanged = ({ target }) => {
-  return {
-    type: SearchPropertyActionTypes.INPUT_CHANGED,
-    payload: target.value,
-  };
-};
+export const onInputChanged = (
+  e: ChangeEvent<HTMLInputElement>
+): SearchPropertyAction => ({
+  type: SearchPropertyActionTypes.INPUT_CHANGED,
+  payload: e.target.value,
+});
 
-const onGetProperties = (location: Location) => {
-  return {
-    type: SearchPropertyActionTypes.SELECT_LOCATION,
-    payload: location.id,
-  };
-};
+const onGetProperties = (location: Location) => ({
+  type: SearchPropertyActionTypes.SELECT_LOCATION,
+  payload: location.id,
+});
 
-export const onShowLocations = (e, locName, locations) => {
+export const onShowLocations = (
+  e: MouseEvent,
+  locName: string,
+  locations: Location[]
+): SearchPropertyAction => {
   const isExist: Location = locations.find(
     loc => loc.name.toLowerCase() === locName.toLowerCase()
   );

@@ -1,20 +1,23 @@
-import React from 'react';
+import React, { ChangeEvent, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Location } from '../../../types/location';
 
+import { Location } from '../../../types/location';
 import './SearchForm.scss';
 
 interface SearchFormProps {
-  onGo: (e, locName, locations) => void;
-  onInputChanged: (e) => void;
+  onGo: (e: MouseEvent, locName: string, locations: Location[]) => void;
+  onInputChanged: (e: ChangeEvent) => void;
   locationName: string;
   locations: Location[];
 }
 
-const SearchForm: React.FC<SearchFormProps> = props => {
-  const { onInputChanged, onGo, locationName, locations } = props;
-
-  const clickedGo = e => onGo(e, locationName, locations);
+const SearchForm: React.FC<SearchFormProps> = ({
+  onInputChanged,
+  onGo,
+  locationName,
+  locations,
+}) => {
+  const clickedGo = (e: MouseEvent) => onGo(e, locationName, locations);
 
   return (
     <div className="search__form">
