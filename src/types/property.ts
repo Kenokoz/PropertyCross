@@ -20,7 +20,7 @@ export interface Request {
 
 interface FetchPropertiesAction {
   type: PropertyActionTypes.FETCH_PROPERTIES;
-  request: Request;
+  payload: Request;
 }
 
 interface FetchPropertiesSuccessAction {

@@ -10,8 +10,8 @@ export const thunkMiddleware = ({
   dispatch: Dispatch<PropertyAction>;
   getState: () => RootState;
 }) => next => async action => {
-  if (action.request) {
-    const request: Request = action.request;
+  if (action.payload.location) {
+    const request: Request = action.payload;
 
     try {
       const response = await fetch(

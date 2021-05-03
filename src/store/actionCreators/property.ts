@@ -3,7 +3,7 @@ import { PropertyAction, PropertyActionTypes } from '../../types/property';
 
 export const getProperties = (location: Location): PropertyAction => ({
   type: PropertyActionTypes.FETCH_PROPERTIES,
-  request: {
+  payload: {
     location,
     getData: getDataSucces,
     getDataError: getPropertiesError,
