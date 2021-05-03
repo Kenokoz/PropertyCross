@@ -11,6 +11,7 @@ const PropertyList: React.FC = () => {
     property: { loading, error, properties },
     searchProperty: { selectedLocation },
   } = usedTypedSelector((state: RootState) => state);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProperties(selectedLocation));

@@ -1,12 +1,11 @@
-import React, { ChangeEvent, MouseEvent } from 'react';
-import { Link } from 'react-router-dom';
+import React, { ChangeEvent, FormEvent } from 'react';
 
 import { Location } from '../../../types/location';
 import './SearchForm.scss';
 
 interface SearchFormProps {
   onGo: (
-    e: MouseEvent,
+    e: FormEvent,
     locations: Location[],
     inputLocationName: string
   ) => void;
@@ -21,11 +20,11 @@ const SearchForm: React.FC<SearchFormProps> = ({
   locations,
   inputLocationName,
 }) => {
-  const clickedGo = (e: MouseEvent) => onGo(e, locations, inputLocationName);
+  const clickedGo = (e: FormEvent) => onGo(e, locations, inputLocationName);
 
   return (
     <div className="search__form">
-      <form className="form">
+      <form className="form" onSubmit={clickedGo}>
         <div className="form__wrapper">
           <input
             className="form__input"
@@ -35,17 +34,12 @@ const SearchForm: React.FC<SearchFormProps> = ({
           />
         </div>
         <div className="form__wrapper">
-          <Link
-            to={`/locations/${inputLocationName}`}
-            className="form__goBtn"
-            type="submit"
-            onClick={clickedGo}
-          >
+          <button type="submit" className="form__goBtn">
             Go
-          </Link>
-          <Link to="/" className="form__locBtn">
+          </button>
+          <button type="button" className="form__locBtn">
             My&#160;location
-          </Link>
+          </button>
         </div>
       </form>
     </div>

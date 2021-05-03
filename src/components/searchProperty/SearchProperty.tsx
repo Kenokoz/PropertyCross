@@ -1,4 +1,4 @@
-import React, { ChangeEvent, MouseEvent } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
 
 import SearchForm from './searchForm/SearchForm';
@@ -21,7 +21,7 @@ interface SearchPropertyProps {
   location: Location;
   onInputChanged(e: ChangeEvent): void;
   onGoClicked(
-    e: MouseEvent,
+    e: FormEvent,
     locations: Location[],
     inputLocationName: string
   ): void;

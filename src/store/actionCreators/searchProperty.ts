@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from 'react';
+import { ChangeEvent, FormEvent } from 'react';
 
 import { Location } from '../../types/location';
 import {
@@ -13,12 +13,17 @@ export const onInputChanged = (
   payload: e.target.value,
 });
 
-const onGetProperties = (location: Location): SearchPropertyAction => ({
-  type: SearchPropertyActionTypes.SELECT_LOCATION,
-  payload: location,
-});
-
-const onShowLocations = (e: MouseEvent): SearchPropertyAction => {
+const onGetProperties = (
+  e: FormEvent,
+  location: Location
+): SearchPropertyAction => {
+  e.preventDefault();
+  return {
+    type: SearchPropertyActionTypes.SELECT_LOCATION,
+    payload: location,
+  };
+};
+const onShowLocations = (e: FormEvent): SearchPropertyAction => {
   e.preventDefault();
   return {
     type: SearchPropertyActionTypes.SHOW_LOCATIONS,
@@ -27,15 +32,17 @@ const onShowLocations = (e: MouseEvent): SearchPropertyAction => {
 };
 
 export const onGoClicked = (
-  e: MouseEvent,
+  e: FormEvent,
   locations: Location[],
   inputLocationName: string
 ): SearchPropertyAction => {
-  const foundLocation: Location = locations.find(
+  const isLocationFound: Location = locations.find(
     loc => loc.name.toLowerCase() === inputLocationName.toLowerCase()
   );
 
-  return foundLocation ? onGetProperties(foundLocation) : onShowLocations(e);
+  return isLocationFound
+    ? onGetProperties(e, isLocationFound)
+    : onShowLocations(e);
 };
 
 export const onLocationClicked = (
