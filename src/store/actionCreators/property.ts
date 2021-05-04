@@ -1,10 +1,9 @@
-import { Location } from '../../types/location';
 import { PropertyAction, PropertyActionTypes } from '../../types/property';
 
-export const getProperties = (location: Location): PropertyAction => ({
+export const getProperties = (url: string): PropertyAction => ({
   type: PropertyActionTypes.FETCH_PROPERTIES,
   payload: {
-    location,
+    url,
     getData: getDataSucces,
     getDataError: getPropertiesError,
   },

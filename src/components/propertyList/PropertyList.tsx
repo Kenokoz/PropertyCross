@@ -12,9 +12,10 @@ const PropertyList: React.FC = () => {
     searchProperty: { selectedLocation },
   } = usedTypedSelector((state: RootState) => state);
 
+  const url = `/locations/${selectedLocation.id}/properties?page=1`;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getProperties(selectedLocation));
+    dispatch(getProperties(url));
   }, []);
 
   if (loading) {

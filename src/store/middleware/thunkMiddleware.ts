@@ -10,12 +10,12 @@ export const thunkMiddleware = ({
   dispatch: Dispatch<PropertyAction>;
   getState: () => RootState;
 }) => next => async action => {
-  if (action.payload.location) {
+  if (action.payload.url) {
     const request: Request = action.payload;
 
     try {
       const response = await fetch(
-        `http://localhost:3000/locations/${request.location.id}/properties?page=1`
+        `http://localhost:3000${request.url}`
       ).then(data => data.json());
 
       next(request.getData(response));

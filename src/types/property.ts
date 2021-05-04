@@ -13,7 +13,7 @@ export enum PropertyActionTypes {
 }
 
 export interface Request {
-  location: Location;
+  url: string;
   getData(data): PropertyAction;
   getDataError(error): PropertyAction;
 }
