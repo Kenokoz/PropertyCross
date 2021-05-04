@@ -20,7 +20,7 @@ const LocationList: React.FC<LocationListProps> = ({
       {locations.map(({ id, name }) => (
         <Link
           className="list__item"
-          to={`locations/${id}`}
+          to={`properties/${id}`}
           key={id}
           onClick={() => onClicked({ name, id })}
         >

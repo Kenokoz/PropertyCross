@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './SearchProperty.scss';
 import SearchForm from './searchForm/SearchForm';
 import RecentSearches from './recentSearches/RecentSearches';
-import Header from './header/Header';
+import Header from '../header/Header';
 import LocationList from './locationList/LocationList';
 import {
   onInputChanged,

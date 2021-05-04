@@ -19,7 +19,7 @@ const onGetProperties = (
   history
 ): SearchPropertyAction => {
   e.preventDefault();
-  history.push(`/locations/${location.id}`);
+  history.push(`/properties/${location.id}`);
 
   return {
     type: SearchPropertyActionTypes.SELECT_LOCATION,
