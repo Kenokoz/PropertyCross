@@ -14,6 +14,7 @@ const PropertyList: React.FC = () => {
 
   const url = `/locations/${selectedLocation.id}/properties?page=1`;
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getProperties(url));
   }, []);

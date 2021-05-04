@@ -15,9 +15,12 @@ export const onInputChanged = (
 
 const onGetProperties = (
   e: FormEvent,
-  location: Location
+  location: Location,
+  history
 ): SearchPropertyAction => {
   e.preventDefault();
+  history.push(`/locations/${location.id}`);
+
   return {
     type: SearchPropertyActionTypes.SELECT_LOCATION,
     payload: location,
@@ -34,14 +37,15 @@ const onShowLocations = (e: FormEvent): SearchPropertyAction => {
 export const onGoClicked = (
   e: FormEvent,
   locations: Location[],
-  inputLocationName: string
+  inputLocationName: string,
+  history
 ): SearchPropertyAction => {
   const isLocationFound: Location = locations.find(
     loc => loc.name.toLowerCase() === inputLocationName.toLowerCase()
   );
 
   return isLocationFound
-    ? onGetProperties(e, isLocationFound)
+    ? onGetProperties(e, isLocationFound, history)
     : onShowLocations(e);
 };
 
@@ -50,4 +54,8 @@ export const onLocationClicked = (
 ): SearchPropertyAction => ({
   type: SearchPropertyActionTypes.LOCATION_CLICKED,
   payload: location,
+});
+
+export const clearSelectedLocation = (): SearchPropertyAction => ({
+  type: SearchPropertyActionTypes.CLEAR_SELECTED_LOCATION,
 });

@@ -1,4 +1,5 @@
 import React, { ChangeEvent, FormEvent } from 'react';
+import { useHistory } from 'react-router';
 
 import { Location } from '../../../types/location';
 import './SearchForm.scss';
@@ -7,7 +8,8 @@ interface SearchFormProps {
   onGo: (
     e: FormEvent,
     locations: Location[],
-    inputLocationName: string
+    inputLocationName: string,
+    history
   ) => void;
   onInputChanged: (e: ChangeEvent) => void;
   inputLocationName: string;
@@ -20,7 +22,9 @@ const SearchForm: React.FC<SearchFormProps> = ({
   locations,
   inputLocationName,
 }) => {
-  const clickedGo = (e: FormEvent) => onGo(e, locations, inputLocationName);
+  const history = useHistory();
+  const clickedGo = (e: FormEvent) =>
+    onGo(e, locations, inputLocationName, history);
 
   return (
     <div className="search__form">

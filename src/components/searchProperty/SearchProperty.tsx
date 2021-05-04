@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent } from 'react';
 import { connect } from 'react-redux';
 
+import './SearchProperty.scss';
 import SearchForm from './searchForm/SearchForm';
 import RecentSearches from './recentSearches/RecentSearches';
 import Header from './header/Header';
@@ -11,7 +12,6 @@ import {
   onLocationClicked,
 } from '../../store/actionCreators/searchProperty';
 import { Location } from '../../types/location';
-import './SearchProperty.scss';
 import { SearchPropertyState } from '../../types/searchProperty';
 
 interface SearchPropertyProps {
@@ -23,7 +23,8 @@ interface SearchPropertyProps {
   onGoClicked(
     e: FormEvent,
     locations: Location[],
-    inputLocationName: string
+    inputLocationName: string,
+    history
   ): void;
   onLocationClicked(location: Location): void;
 }
@@ -73,6 +74,10 @@ const mapStateToProps = ({
   locations: searchProperty.locations,
   location: searchProperty.selectedLocation,
 });
-const mapDispatchToProps = { onInputChanged, onGoClicked, onLocationClicked };
+const mapDispatchToProps = {
+  onInputChanged,
+  onGoClicked,
+  onLocationClicked,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);
