@@ -1,3 +1,5 @@
+@import '../../../assets/styles/constants';
+
 .form {
   &__input {
     width: 100%;
@@ -18,13 +20,14 @@
     display: inline-block;
     width: 200px;
     padding: 12px 10px;
-    background-color: rgb(99, 99, 129);
+    background-color: $base-color;
     border: none;
     border-radius: 5px;
     transition: background-color 0.1s linear;
     text-decoration: none;
     color: white;
     font-size: 20px;
+    cursor: pointer;
 
     &:hover {
       background-color: rgb(114, 114, 192);
