@@ -3,12 +3,14 @@ export interface PropertyState {
   loading: boolean;
   error: null | string;
   totalResults: number;
+  currentPage: number;
 }
 
 export enum PropertyActionTypes {
   FETCH_PROPERTIES = 'FETCH_PROPERTIES',
   FETCH_PROPERTIES_SUCCESS = 'FETCH_PROPERTIES_SUCCESS',
   FETCH_PROPERTIES_ERROR = 'FETCH_PROPERTIES_ERROR',
+  PAGE_CHANGE = 'PAGE_CHANGE',
 }
 
 export interface Request {
@@ -32,7 +34,13 @@ interface FetchPropertiesErrorAction {
   payload: string;
 }
 
+interface PageChange {
+  type: PropertyActionTypes.PAGE_CHANGE;
+  payload: number;
+}
+
 export type PropertyAction =
   | FetchPropertiesAction
   | FetchPropertiesSuccessAction
-  | FetchPropertiesErrorAction;
+  | FetchPropertiesErrorAction
+  | PageChange;

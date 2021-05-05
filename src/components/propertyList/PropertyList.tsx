@@ -11,11 +11,11 @@ import './PropertyList.scss';
 
 const PropertyList: React.FC = () => {
   const {
-    property: { loading, error, totalResults },
+    property: { loading, error, totalResults, currentPage },
     searchProperty: { selectedLocation },
   } = usedTypedSelector((state: RootState) => state);
 
-  const url = `/locations/${selectedLocation.id}/properties?page=1`;
+  const url = `/locations/${selectedLocation.id}/properties?page=${currentPage}`;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,11 +37,11 @@ const PropertyList: React.FC = () => {
           <div className="properties__count">
             <strong>20</strong> of <strong>{totalResults}</strong> matches
           </div>
-          <Pagination />
+          <Pagination url={url} />
         </div>
         <PropertyCards />
       </div>
-      <Pagination />
+      <Pagination url={url} />
     </div>
   );
 };

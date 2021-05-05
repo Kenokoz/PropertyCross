@@ -9,6 +9,7 @@ const initialState: PropertyState = {
   loading: true,
   error: null,
   totalResults: 0,
+  currentPage: 1,
 };
 
 export const propertyReducer = (
@@ -27,6 +28,9 @@ export const propertyReducer = (
       };
     case PropertyActionTypes.FETCH_PROPERTIES_ERROR:
       return { ...state, error: action.payload };
+    case PropertyActionTypes.PAGE_CHANGE:
+      console.log(action.payload);
+      return { ...state, currentPage: action.payload };
     default:
       return state;
   }
