@@ -29,7 +29,6 @@ export const propertyReducer = (
     case PropertyActionTypes.FETCH_PROPERTIES_ERROR:
       return { ...state, error: action.payload };
     case PropertyActionTypes.PAGE_CHANGE:
-      console.log(action.payload);
       return { ...state, currentPage: action.payload };
     default:
       return state;

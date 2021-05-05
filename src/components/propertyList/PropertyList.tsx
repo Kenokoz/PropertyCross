@@ -35,13 +35,13 @@ const PropertyList: React.FC = () => {
       <div className="properties">
         <div className="properties__info">
           <div className="properties__count">
-            <strong>20</strong> of <strong>{totalResults}</strong> matches
+            <strong>{totalResults}</strong> matches
           </div>
           <Pagination url={url} />
         </div>
         <PropertyCards />
+        <Pagination url={url} />
       </div>
-      <Pagination url={url} />
     </div>
   );
 };

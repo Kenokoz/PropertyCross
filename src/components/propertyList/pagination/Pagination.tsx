@@ -7,7 +7,6 @@ import {
   getProperties,
   onPageChange,
 } from '../../../store/actionCreators/property';
-
 import './Pagination.scss';
 
 interface PaginationProps {
@@ -15,38 +14,44 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ url }) => {
-  const { totalResults, properties } = usedTypedSelector(
+  const { totalResults, properties, currentPage } = usedTypedSelector(
     (state: RootState) => state.property
   );
   const pageSize = properties.length;
 
-  const pagesCount = Math.ceil(50 / pageSize);
+  const pagesCount = Math.ceil(totalResults / pageSize);
   const pages = [...Array(pagesCount).keys()].map(i => i + 1);
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch;
   });
   const onPageClicked = (e, page) => {
     dispatch(onPageChange(e, page));
-    dispatch(getProperties(url));
+
+    const updatedUrl = url.slice(0, url.length - 1) + page;
+    dispatch(getProperties(updatedUrl));
   };
+
+  const linkClass = 'pagination__link';
 
   return (
     <nav className="pagination">
       <a href="" className="pagination__link">
         <i className="fas fa-chevron-left"></i>
       </a>
-      {pages.map(page => (
-        <a
-          key={page}
-          href=""
-          className="pagination__link"
-          onClick={(e: MouseEvent) => onPageClicked(e, page)}
-        >
-          {page}
-        </a>
-      ))}
+      <div className="pages__wrapper">
+        {pages.map(page => (
+          <a
+            key={page}
+            href=""
+            className={page === currentPage ? linkClass + '-active' : linkClass}
+            onClick={(e: MouseEvent) => onPageClicked(e, page)}
+          >
+            {page}
+          </a>
+        ))}
+      </div>
+
       <a href="" className="pagination__link">
         <i className="fas fa-chevron-right"></i>
       </a>

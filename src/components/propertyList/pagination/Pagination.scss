@@ -3,6 +3,7 @@
 .pagination {
   display: flex;
   justify-content: center;
+  width: 304px;
 
   &__link {
     font-size: 20px;
@@ -29,12 +30,20 @@
   }
 }
 
+.pages__wrapper {
+  display: flex;
+  overflow: auto;
+}
+
 @media (max-width: 450px) {
   .pagination {
+    width: 224px;
     &__link {
       padding: 5px 12px;
+      font-size: 14px;
       &-active {
         padding: 5px 12px;
+        font-size: 14px;
       }
     }
   }

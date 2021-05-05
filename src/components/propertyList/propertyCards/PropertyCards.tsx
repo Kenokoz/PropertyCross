@@ -7,6 +7,7 @@ const PropertyCards: React.FC = () => {
   const { properties } = usedTypedSelector(
     (state: RootState) => state.property
   );
+  const amountOfSymbols = 35;
 
   return (
     <>
@@ -20,7 +21,9 @@ const PropertyCards: React.FC = () => {
               {price}
               <span className="property__currency">{priceCurrency}</span>
             </div>
-            <div className="property__location">{title}</div>
+            <div className="property__location">
+              {title.length > amountOfSymbols ? `${title}...` : title}
+            </div>
           </div>
           <div className="property__favorite">
             <i className="fas fa-star"></i>
