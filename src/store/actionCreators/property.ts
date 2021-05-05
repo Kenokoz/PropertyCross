@@ -9,10 +9,12 @@ export const getProperties = (url: string): PropertyAction => ({
   },
 });
 
-const getDataSucces = (data): PropertyAction => ({
-  type: PropertyActionTypes.FETCH_PROPERTIES_SUCCESS,
-  payload: data.properties,
-});
+const getDataSucces = (data): PropertyAction => {
+  return {
+    type: PropertyActionTypes.FETCH_PROPERTIES_SUCCESS,
+    payload: data,
+  };
+};
 
 const getPropertiesError = (error): PropertyAction => ({
   type: PropertyActionTypes.FETCH_PROPERTIES_ERROR,

@@ -1,9 +1,8 @@
-import { Location } from './location';
-
 export interface PropertyState {
   properties: any[];
   loading: boolean;
   error: null | string;
+  totalResults: number;
 }
 
 export enum PropertyActionTypes {
@@ -25,7 +24,7 @@ interface FetchPropertiesAction {
 
 interface FetchPropertiesSuccessAction {
   type: PropertyActionTypes.FETCH_PROPERTIES_SUCCESS;
-  payload: Location[];
+  payload: { properties: any[]; totalResults: number };
 }
 
 interface FetchPropertiesErrorAction {
