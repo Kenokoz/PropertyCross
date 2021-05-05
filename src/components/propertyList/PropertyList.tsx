@@ -5,6 +5,7 @@ import { usedTypedSelector } from '../../hooks/useTypedSelector';
 import { getProperties } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
 import Header from '../header/Header';
+import Pagination from './pagination/Pagination';
 import PropertyCards from './propertyCards/PropertyCards';
 import './PropertyList.scss';
 
@@ -33,10 +34,14 @@ const PropertyList: React.FC = () => {
       <Header />
       <div className="properties">
         <div className="properties__info">
-          <strong>20</strong> of <strong>{totalResults}</strong> matches
+          <div className="properties__count">
+            <strong>20</strong> of <strong>{totalResults}</strong> matches
+          </div>
+          <Pagination />
         </div>
         <PropertyCards />
       </div>
+      <Pagination />
     </div>
   );
 };
