@@ -22,7 +22,9 @@ const PropertyCards: React.FC = () => {
               <span className="property__currency">{priceCurrency}</span>
             </div>
             <div className="property__location">
-              {title.length > amountOfSymbols ? `${title}...` : title}
+              {title.length > amountOfSymbols
+                ? `${title.slice(0, amountOfSymbols)}...`
+                : title}
             </div>
           </div>
           <div className="property__favorite">

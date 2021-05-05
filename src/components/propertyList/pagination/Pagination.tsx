@@ -3,17 +3,13 @@ import { useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
-import {
-  getProperties,
-  onPageChange,
-} from '../../../store/actionCreators/property';
 import './Pagination.scss';
 
 interface PaginationProps {
-  url: string;
+  onPageClicked: (e, page) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ url }) => {
+const Pagination: React.FC<PaginationProps> = ({ onPageClicked }) => {
   const { totalResults, properties, currentPage } = usedTypedSelector(
     (state: RootState) => state.property
   );
@@ -25,12 +21,6 @@ const Pagination: React.FC<PaginationProps> = ({ url }) => {
   useEffect(() => {
     dispatch;
   });
-  const onPageClicked = (e, page) => {
-    dispatch(onPageChange(e, page));
-
-    const updatedUrl = url.slice(0, url.length - 1) + page;
-    dispatch(getProperties(updatedUrl));
-  };
 
   const linkClass = 'pagination__link';
 
