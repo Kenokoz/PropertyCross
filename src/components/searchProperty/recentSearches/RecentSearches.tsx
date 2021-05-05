@@ -2,22 +2,35 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './RecentSearches.scss';
+import { usedTypedSelector } from '../../../hooks/useTypedSelector';
+import { RootState } from '../../../store/reducers/combineReducer';
+import { Location } from '../../../types/location';
 
-const RecentSearches: React.FC = () => (
-  <div className="list">
-    <div className="list__title">Recent searches:</div>
-    <div className="list__wrapper">
-      <Link className="list__item" to="search/1">
-        One dasd asdas da sdad as
-      </Link>
-      <Link className="list__item" to="search/1">
-        Two
-      </Link>
-      <Link className="list__item" to="search/1">
-        Three
-      </Link>
+interface RecentSearchesProps {
+  onClicked(location: Location): void;
+}
+
+const RecentSearches: React.FC<RecentSearchesProps> = ({ onClicked }) => {
+  const { recentSearches } = usedTypedSelector(
+    (state: RootState) => state.searchProperty
+  );
+
+  return (
+    <div className="list">
+      <div className="list__title">Recent searches:</div>
+      <div className="list__wrapper">
+        {recentSearches.map(({ name, id }) => (
+          <Link
+            key={id}
+            className="list__item"
+            to="properties/shifnal"
+            onClick={() => onClicked({ name, id })}
+          >
+            {name}
+          </Link>
+        ))}
+      </div>
     </div>
-  </div>
-);
-
+  );
+};
 export default RecentSearches;

@@ -14,6 +14,10 @@ const initialState: SearchPropertyState = {
     { name: 'Shifnal', id: 'shifnal' },
   ],
   selectedLocation: { name: '', id: '' },
+  recentSearches: [
+    { name: 'Albury, Ware', id: 'albury_ware' },
+    { name: 'Shifnal', id: 'shifnal' },
+  ],
 };
 
 export const searchPropertyReducer = (
@@ -31,15 +35,18 @@ export const searchPropertyReducer = (
         ...state,
         inputValue: action.payload,
       };
-    case SearchPropertyActionTypes.SELECT_LOCATION:
+    case SearchPropertyActionTypes.SELECT_LOCATION: {
       return {
         ...state,
         selectedLocation: action.payload,
+        recentSearches: filterRecentSearches(state, action),
       };
+    }
     case SearchPropertyActionTypes.LOCATION_CLICKED:
       return {
         ...state,
         selectedLocation: action.payload,
+        recentSearches: filterRecentSearches(state, action),
       };
     case SearchPropertyActionTypes.CLEAR_SELECTED_LOCATION:
       return {
@@ -50,3 +57,11 @@ export const searchPropertyReducer = (
       return state;
   }
 };
+
+function filterRecentSearches(state: SearchPropertyState, action) {
+  const oldSearches = [...state.recentSearches];
+  const existSearch = oldSearches.find(item => {
+    return item.id === action.payload.id;
+  });
+  return existSearch ? oldSearches : [...oldSearches, { ...action.payload }];
+}

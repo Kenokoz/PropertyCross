@@ -13,6 +13,7 @@ export interface SearchPropertyState {
   showLocations: boolean;
   locations: Location[];
   selectedLocation: Location;
+  recentSearches: Location[];
 }
 
 interface SearchShowLocation {

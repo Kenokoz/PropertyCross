@@ -40,7 +40,7 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   const items = showLocations ? (
     <LocationList onClicked={onLocationClicked} />
   ) : (
-    <RecentSearches />
+    <RecentSearches onClicked={onLocationClicked} />
   );
 
   return (
@@ -73,6 +73,7 @@ const mapStateToProps = ({
   showLocations: searchProperty.showLocations,
   locations: searchProperty.locations,
   location: searchProperty.selectedLocation,
+  recent: searchProperty.recentSearches,
 });
 const mapDispatchToProps = {
   onInputChanged,
