@@ -46,7 +46,7 @@ const Pagination: React.FC = () => {
     <nav className="pagination">
       <Link
         to={getLinkTo(1)}
-        className="pagination__link"
+        className={linkClass}
         onClick={setFirstPageHandler}
       >
         <i className="fas fa-angle-double-left"></i>
@@ -63,7 +63,7 @@ const Pagination: React.FC = () => {
       ))}
       <Link
         to={getLinkTo(allPages[allPages.length - 1])}
-        className="pagination__link"
+        className={linkClass}
         onClick={setLastPageHandler}
       >
         <i className="fas fa-angle-double-right"></i>

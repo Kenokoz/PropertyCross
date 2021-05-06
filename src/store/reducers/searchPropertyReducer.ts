@@ -35,13 +35,12 @@ export const searchPropertyReducer = (
         ...state,
         inputValue: action.payload,
       };
-    case SearchPropertyActionTypes.SELECT_LOCATION: {
+    case SearchPropertyActionTypes.SELECT_LOCATION:
       return {
         ...state,
         selectedLocation: action.payload,
         recentSearches: filterRecentSearches(state, action),
       };
-    }
     case SearchPropertyActionTypes.LOCATION_CLICKED:
       return {
         ...state,

@@ -19,7 +19,6 @@ const App = () => {
         path="/locations/:locationName/:properties?page=?number"
         component={PropertyList}
       />
-      <Route path="/search/:id" component={() => <h1>Recent search!</h1>} />
     </Router>
   );
 };
