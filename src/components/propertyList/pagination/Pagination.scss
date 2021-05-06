@@ -8,13 +8,13 @@
     font-size: 20px;
     color: black;
     float: left;
-    padding: 8px 16px;
+    padding: 7px 14px;
     text-decoration: none;
     transition: all 0.1s linear;
 
     &-active {
       font-size: 20px;
-      padding: 8px 16px;
+      padding: 7px 14px;
       text-decoration: none;
       background-color: $base-color;
       color: white;
@@ -32,11 +32,11 @@
 @media (max-width: 450px) {
   .pagination {
     &__link {
-      padding: 5px 12px;
-      font-size: 14px;
+      padding: 4px 8px;
+      font-size: 13px;
       &-active {
-        padding: 5px 12px;
-        font-size: 14px;
+        padding: 4px 8px;
+        font-size: 13px;
       }
     }
   }
