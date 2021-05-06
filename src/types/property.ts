@@ -1,5 +1,5 @@
 export interface PropertyState {
-  properties: any[];
+  properties: Property[];
   loading: boolean;
   error: null | string;
   totalResults: number;
@@ -11,6 +11,14 @@ export enum PropertyActionTypes {
   FETCH_PROPERTIES_SUCCESS = 'FETCH_PROPERTIES_SUCCESS',
   FETCH_PROPERTIES_ERROR = 'FETCH_PROPERTIES_ERROR',
   PAGE_CHANGE = 'PAGE_CHANGE',
+}
+
+interface Property {
+  id: string;
+  title: string;
+  imgUrl: string;
+  price: string;
+  priceCurrency: string;
 }
 
 export interface Request {
