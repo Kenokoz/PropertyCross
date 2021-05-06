@@ -1,12 +1,11 @@
-import React, { MouseEvent, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { MouseEvent } from 'react';
 
 import { usedTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
 import './Pagination.scss';
 
 interface PaginationProps {
-  onPageClicked: (e, page) => void;
+  onPageClicked: (e: MouseEvent, page: number) => void;
 }
 
 const Pagination: React.FC<PaginationProps> = ({ onPageClicked }) => {
@@ -17,10 +16,6 @@ const Pagination: React.FC<PaginationProps> = ({ onPageClicked }) => {
 
   const pagesCount = Math.ceil(totalResults / pageSize);
   const pages = [...Array(pagesCount).keys()].map(i => i + 1);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch;
-  });
 
   const linkClass = 'pagination__link';
 

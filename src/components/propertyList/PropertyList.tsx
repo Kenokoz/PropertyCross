@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { MouseEvent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../hooks/useTypedSelector';
@@ -25,7 +25,7 @@ const PropertyList: React.FC = () => {
     dispatch(getProperties(url));
   }, []);
 
-  const PageClickedHandler = (e, page) => {
+  const PageClickedHandler = (e: MouseEvent, page: number) => {
     url = `/locations/${selectedLocation.id}/properties?page=${page}`;
     dispatch(onPageChange(e, page));
     dispatch(getProperties(url));
