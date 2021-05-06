@@ -23,8 +23,8 @@ const getPropertiesError = (error): PropertyAction => ({
   payload: `${error}`,
 });
 
-export const onPageChange = (e: MouseEvent, page: number): PropertyAction => {
-  e.preventDefault();
+export const onPageChange = (page: number, e?: MouseEvent): PropertyAction => {
+  e?.preventDefault();
   return {
     type: PropertyActionTypes.PAGE_CHANGE,
     payload: page,

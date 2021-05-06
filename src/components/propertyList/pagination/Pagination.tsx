@@ -21,8 +21,8 @@ const Pagination: React.FC = () => {
   };
 
   const dispatch = useDispatch();
-  const pageClickedHandler = (e: MouseEvent, page: number) => {
-    dispatch(onPageChange(e, page));
+  const pageClickedHandler = (page: number, e?: MouseEvent) => {
+    dispatch(onPageChange(page, e));
   };
 
   const linkClass = 'pagination__link';
@@ -37,7 +37,7 @@ const Pagination: React.FC = () => {
           key={page}
           href=""
           className={page === currentPage ? linkClass + '-active' : linkClass}
-          onClick={(e: MouseEvent) => pageClickedHandler(e, page)}
+          onClick={(e: MouseEvent) => pageClickedHandler(page, e)}
         >
           {page}
         </a>

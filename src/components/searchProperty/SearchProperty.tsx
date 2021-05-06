@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './SearchProperty.scss';
@@ -13,6 +13,7 @@ import {
 } from '../../store/actionCreators/searchProperty';
 import { Location } from '../../types/location';
 import { SearchPropertyState } from '../../types/searchProperty';
+import { onPageChange } from '../../store/actionCreators/property';
 
 interface SearchPropertyProps {
   inputValue: string;
@@ -27,6 +28,7 @@ interface SearchPropertyProps {
     history
   ): void;
   onLocationClicked(location: Location): void;
+  onPageChange(startPage: number): void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = ({
@@ -36,12 +38,18 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   onInputChanged,
   onGoClicked,
   onLocationClicked,
+  onPageChange,
 }) => {
   const items = showLocations ? (
     <LocationList onClicked={onLocationClicked} />
   ) : (
     <RecentSearches onClicked={onLocationClicked} />
   );
+
+  useEffect(() => {
+    const startPage = 1;
+    onPageChange(startPage);
+  }, []);
 
   return (
     <div className="container">
@@ -79,6 +87,7 @@ const mapDispatchToProps = {
   onInputChanged,
   onGoClicked,
   onLocationClicked,
+  onPageChange,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);
