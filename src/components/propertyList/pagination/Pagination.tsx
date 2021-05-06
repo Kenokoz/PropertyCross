@@ -14,7 +14,10 @@ const Pagination: React.FC = () => {
   const getPages = () => {
     const pageSize = 10;
     const pagesCount = Math.ceil(totalResults / pageSize);
-    return [...Array(pagesCount).keys()].map(i => i + 1);
+    const allPages = [...Array(pagesCount).keys()].map(i => i + 1);
+    return currentPage === 1
+      ? [...allPages.slice(0, 5)]
+      : [...allPages.slice(currentPage - 3, currentPage + 2)];
   };
 
   const dispatch = useDispatch();
@@ -29,19 +32,16 @@ const Pagination: React.FC = () => {
       <a href="" className="pagination__link">
         <i className="fas fa-chevron-left"></i>
       </a>
-      <div className="pages__wrapper">
-        {getPages().map(page => (
-          <a
-            key={page}
-            href=""
-            className={page === currentPage ? linkClass + '-active' : linkClass}
-            onClick={(e: MouseEvent) => pageClickedHandler(e, page)}
-          >
-            {page}
-          </a>
-        ))}
-      </div>
-
+      {getPages().map(page => (
+        <a
+          key={page}
+          href=""
+          className={page === currentPage ? linkClass + '-active' : linkClass}
+          onClick={(e: MouseEvent) => pageClickedHandler(e, page)}
+        >
+          {page}
+        </a>
+      ))}
       <a href="" className="pagination__link">
         <i className="fas fa-chevron-right"></i>
       </a>
