@@ -16,33 +16,33 @@ export interface SearchPropertyState {
   recentSearches: Location[];
 }
 
-interface SearchShowLocation {
+interface ShowLocation {
   type: SearchPropertyActionTypes.SHOW_LOCATIONS;
   payload: boolean;
 }
 
-interface SearchInputChanged {
+interface InputChanged {
   type: SearchPropertyActionTypes.INPUT_CHANGED;
   payload: string;
 }
 
-interface SearchSelectLocation {
+interface SelectLocation {
   type: SearchPropertyActionTypes.SELECT_LOCATION;
   payload: Location;
 }
 
-interface SearchLocationClicked {
+interface LocationClicked {
   type: SearchPropertyActionTypes.LOCATION_CLICKED;
   payload: Location;
 }
 
-interface SearchClearSelectedLocations {
+interface ClearSelectedLocations {
   type: SearchPropertyActionTypes.CLEAR_SELECTED_LOCATION;
 }
 
 export type SearchPropertyAction =
-  | SearchShowLocation
-  | SearchInputChanged
-  | SearchSelectLocation
-  | SearchLocationClicked
-  | SearchClearSelectedLocations;
+  | ShowLocation
+  | InputChanged
+  | SelectLocation
+  | LocationClicked
+  | ClearSelectedLocations;
