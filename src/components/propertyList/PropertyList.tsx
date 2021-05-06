@@ -1,11 +1,8 @@
-import React, { MouseEvent, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../hooks/useTypedSelector';
-import {
-  getProperties,
-  onPageChange,
-} from '../../store/actionCreators/property';
+import { getProperties } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
 import Header from '../header/Header';
 import Pagination from './pagination/Pagination';
@@ -18,18 +15,12 @@ const PropertyList: React.FC = () => {
     searchProperty: { selectedLocation },
   } = usedTypedSelector((state: RootState) => state);
 
-  let url = `/locations/${selectedLocation.id}/properties?page=${currentPage}`;
+  const url = `/locations/${selectedLocation.id}/properties?page=${currentPage}`;
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getProperties(url));
-  }, []);
-
-  const PageClickedHandler = (e: MouseEvent, page: number) => {
-    url = `/locations/${selectedLocation.id}/properties?page=${page}`;
-    dispatch(onPageChange(e, page));
-    dispatch(getProperties(url));
-  };
+  }, [currentPage]);
 
   if (loading) {
     return <h1>Loading...</h1>;
@@ -46,10 +37,10 @@ const PropertyList: React.FC = () => {
           <div className="properties__count">
             <strong>{totalResults}</strong> matches
           </div>
-          <Pagination onPageClicked={PageClickedHandler} />
+          <Pagination />
         </div>
         <PropertyCards />
-        <Pagination onPageClicked={PageClickedHandler} />
+        <Pagination />
       </div>
     </div>
   );

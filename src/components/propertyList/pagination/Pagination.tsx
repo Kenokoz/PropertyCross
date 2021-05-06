@@ -1,21 +1,26 @@
 import React, { MouseEvent } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../../hooks/useTypedSelector';
+import { onPageChange } from '../../../store/actionCreators/property';
 import { RootState } from '../../../store/reducers/combineReducer';
 import './Pagination.scss';
 
-interface PaginationProps {
-  onPageClicked: (e: MouseEvent, page: number) => void;
-}
-
-const Pagination: React.FC<PaginationProps> = ({ onPageClicked }) => {
-  const { totalResults, properties, currentPage } = usedTypedSelector(
+const Pagination: React.FC = () => {
+  const { totalResults, currentPage } = usedTypedSelector(
     (state: RootState) => state.property
   );
-  const pageSize = properties.length;
 
-  const pagesCount = Math.ceil(totalResults / pageSize);
-  const pages = [...Array(pagesCount).keys()].map(i => i + 1);
+  const getPages = () => {
+    const pageSize = 10;
+    const pagesCount = Math.ceil(totalResults / pageSize);
+    return [...Array(pagesCount).keys()].map(i => i + 1);
+  };
+
+  const dispatch = useDispatch();
+  const pageClickedHandler = (e: MouseEvent, page: number) => {
+    dispatch(onPageChange(e, page));
+  };
 
   const linkClass = 'pagination__link';
 
@@ -25,12 +30,12 @@ const Pagination: React.FC<PaginationProps> = ({ onPageClicked }) => {
         <i className="fas fa-chevron-left"></i>
       </a>
       <div className="pages__wrapper">
-        {pages.map(page => (
+        {getPages().map(page => (
           <a
             key={page}
             href=""
             className={page === currentPage ? linkClass + '-active' : linkClass}
-            onClick={(e: MouseEvent) => onPageClicked(e, page)}
+            onClick={(e: MouseEvent) => pageClickedHandler(e, page)}
           >
             {page}
           </a>
