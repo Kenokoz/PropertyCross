@@ -1,5 +1,6 @@
 import React from 'react';
 
+import './PropertyCards.scss';
 import { usedTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
 
