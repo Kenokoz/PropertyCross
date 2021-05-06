@@ -34,7 +34,7 @@ interface FetchPropertiesAction {
 
 interface FetchPropertiesSuccessAction {
   type: PropertyActionTypes.FETCH_PROPERTIES_SUCCESS;
-  payload: { properties: any[]; totalResults: number };
+  payload: { properties: Property[]; totalResults: number };
 }
 
 interface FetchPropertiesErrorAction {

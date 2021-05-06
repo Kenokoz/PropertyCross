@@ -14,7 +14,11 @@ const App = () => {
     <Router>
       <Route path="/" exact component={SearchProperty} />
       <Route path="/favorites" component={Favorites} />
-      <Route path="/properties/:locationName" component={PropertyList} />
+      <Route path="/locations/:locationName" component={PropertyList} />
+      <Route
+        path="/locations/:locationName/:properties?page=?number"
+        component={PropertyList}
+      />
       <Route path="/search/:id" component={() => <h1>Recent search!</h1>} />
     </Router>
   );

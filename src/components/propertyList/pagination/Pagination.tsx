@@ -1,5 +1,6 @@
-import React, { MouseEvent } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { usedTypedSelector } from '../../../hooks/useTypedSelector';
 import { onPageChange } from '../../../store/actionCreators/property';
@@ -22,46 +23,48 @@ const Pagination: React.FC = () => {
   };
 
   const dispatch = useDispatch();
-  const pageClickedHandler = (page: number, e: MouseEvent) => {
-    dispatch(onPageChange(page, e));
+  const pageClickedHandler = (page: number) => {
+    dispatch(onPageChange(page));
   };
 
-  const setFirstPageHandler = (e: MouseEvent) => {
-    dispatch(onPageChange(allPages[0], e));
+  const setFirstPageHandler = () => {
+    dispatch(onPageChange(1));
   };
 
-  const setLastPageHandler = (e: MouseEvent) => {
-    dispatch(onPageChange(allPages[allPages.length - 1], e));
+  const setLastPageHandler = () => {
+    dispatch(onPageChange(allPages[allPages.length - 1]));
   };
 
   const linkClass = 'pagination__link';
 
   return (
     <nav className="pagination">
-      <a
-        href=""
+      <Link
+        to={`/locations/shifnal/properties?page=${1}`}
         className="pagination__link"
-        onClick={(e: MouseEvent) => setFirstPageHandler(e)}
+        onClick={setFirstPageHandler}
       >
         <i className="fas fa-angle-double-left"></i>
-      </a>
+      </Link>
       {getPages().map(page => (
-        <a
+        <Link
           key={page}
-          href=""
+          to={`/locations/shifnal/properties?page=${page}`}
           className={page === currentPage ? linkClass + '-active' : linkClass}
-          onClick={(e: MouseEvent) => pageClickedHandler(page, e)}
+          onClick={() => pageClickedHandler(page)}
         >
           {page}
-        </a>
+        </Link>
       ))}
-      <a
-        href=""
+      <Link
+        to={`/locations/shifnal/properties?page=${
+          allPages[allPages.length - 1]
+        }`}
         className="pagination__link"
-        onClick={(e: MouseEvent) => setLastPageHandler(e)}
+        onClick={setLastPageHandler}
       >
         <i className="fas fa-angle-double-right"></i>
-      </a>
+      </Link>
     </nav>
   );
 };

@@ -23,7 +23,7 @@ const RecentSearches: React.FC<RecentSearchesProps> = ({ onClicked }) => {
           <Link
             key={id}
             className="list__item"
-            to="properties/shifnal"
+            to="locations/shifnal"
             onClick={() => onClicked({ name, id })}
           >
             {name}

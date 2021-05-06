@@ -1,5 +1,3 @@
-import { MouseEvent } from 'react';
-
 import { PropertyAction, PropertyActionTypes } from '../../types/property';
 
 export const getProperties = (url: string): PropertyAction => ({
@@ -23,8 +21,7 @@ const getPropertiesError = (error): PropertyAction => ({
   payload: `${error}`,
 });
 
-export const onPageChange = (page: number, e?: MouseEvent): PropertyAction => {
-  e?.preventDefault();
+export const onPageChange = (page: number): PropertyAction => {
   return {
     type: PropertyActionTypes.PAGE_CHANGE,
     payload: page,
