@@ -8,9 +8,10 @@ import { RootState } from '../../../store/reducers/combineReducer';
 import './Pagination.scss';
 
 const Pagination: React.FC = () => {
-  const { totalResults, currentPage } = usedTypedSelector(
-    (state: RootState) => state.property
-  );
+  const {
+    property: { totalResults, currentPage },
+    searchProperty: { selectedLocation },
+  } = usedTypedSelector((state: RootState) => state);
 
   let allPages = [];
   const getPages = () => {
@@ -20,6 +21,10 @@ const Pagination: React.FC = () => {
     return currentPage < 3
       ? [...allPages.slice(0, 5)]
       : [...allPages.slice(currentPage - 3, currentPage + 2)];
+  };
+
+  const getLinkTo = (page: number) => {
+    return `/locations/${selectedLocation.id}/properties?page=${page}`;
   };
 
   const dispatch = useDispatch();
@@ -40,7 +45,7 @@ const Pagination: React.FC = () => {
   return (
     <nav className="pagination">
       <Link
-        to={`/locations/shifnal/properties?page=${1}`}
+        to={getLinkTo(1)}
         className="pagination__link"
         onClick={setFirstPageHandler}
       >
@@ -49,7 +54,7 @@ const Pagination: React.FC = () => {
       {getPages().map(page => (
         <Link
           key={page}
-          to={`/locations/shifnal/properties?page=${page}`}
+          to={getLinkTo(page)}
           className={page === currentPage ? linkClass + '-active' : linkClass}
           onClick={() => pageClickedHandler(page)}
         >
@@ -57,9 +62,7 @@ const Pagination: React.FC = () => {
         </Link>
       ))}
       <Link
-        to={`/locations/shifnal/properties?page=${
-          allPages[allPages.length - 1]
-        }`}
+        to={getLinkTo(allPages[allPages.length - 1])}
         className="pagination__link"
         onClick={setLastPageHandler}
       >

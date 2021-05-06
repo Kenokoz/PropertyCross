@@ -10,6 +10,7 @@ import {
   onInputChanged,
   onGoClicked,
   onLocationClicked,
+  clearSelectedLocation,
 } from '../../store/actionCreators/searchProperty';
 import { Location } from '../../types/location';
 import { SearchPropertyState } from '../../types/searchProperty';
@@ -49,6 +50,7 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   useEffect(() => {
     const startPage = 1;
     onPageChange(startPage);
+    clearSelectedLocation();
   }, []);
 
   return (
@@ -88,6 +90,7 @@ const mapDispatchToProps = {
   onGoClicked,
   onLocationClicked,
   onPageChange,
+  clearSelectedLocation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);
