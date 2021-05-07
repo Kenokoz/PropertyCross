@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useStore } from 'react-redux';
-import { useLocation, useParams } from 'react-router';
+import { useDispatch } from 'react-redux';
 
 import { usedTypedSelector } from '../../hooks/useTypedSelector';
 import { getProperties } from '../../store/actionCreators/property';
@@ -17,11 +16,8 @@ const PropertyList: React.FC = () => {
 
   const dispatch = useDispatch();
 
-  const params: { locationName: string } = useParams();
-  const page = useLocation().search.slice(6);
-
   useEffect(() => {
-    const url = `/locations/${params.locationName}/properties?page=${page}`;
+    const url = `/locations/${selectedLocation.id}/properties?page=${currentPage}`;
     dispatch(getProperties(url));
   }, [currentPage]);
 
