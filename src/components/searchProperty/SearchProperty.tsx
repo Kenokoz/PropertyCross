@@ -10,7 +10,7 @@ import {
   onInputChanged,
   onGoClicked,
   onLocationClicked,
-  clearSelectedLocation,
+  clearInputValue,
 } from '../../store/actionCreators/searchProperty';
 import { Location } from '../../types/location';
 import { SearchPropertyState } from '../../types/searchProperty';
@@ -30,6 +30,7 @@ interface SearchPropertyProps {
   ): void;
   onLocationClicked(location: Location): void;
   onPageChange(startPage: number): void;
+  clearInputValue(): void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = ({
@@ -40,6 +41,7 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   onGoClicked,
   onLocationClicked,
   onPageChange,
+  clearInputValue,
 }) => {
   const items = showLocations ? (
     <LocationList onClicked={onLocationClicked} />
@@ -50,7 +52,7 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   useEffect(() => {
     const startPage = 1;
     onPageChange(startPage);
-    clearSelectedLocation();
+    clearInputValue();
   }, []);
 
   return (
@@ -90,7 +92,7 @@ const mapDispatchToProps = {
   onGoClicked,
   onLocationClicked,
   onPageChange,
-  clearSelectedLocation,
+  clearInputValue,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);

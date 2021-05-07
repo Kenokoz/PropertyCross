@@ -47,10 +47,10 @@ export const searchPropertyReducer = (
         selectedLocation: action.payload,
         recentSearches: filterRecentSearches(state, action),
       };
-    case SearchPropertyActionTypes.CLEAR_SELECTED_LOCATION:
+    case SearchPropertyActionTypes.CLEAR_INPUT_VALUE:
       return {
         ...state,
-        selectedLocation: { name: '', id: '' },
+        inputValue: '',
       };
     default:
       return state;

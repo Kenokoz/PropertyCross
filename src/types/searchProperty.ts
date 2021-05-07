@@ -5,7 +5,7 @@ export enum SearchPropertyActionTypes {
   INPUT_CHANGED = 'INPUT_CHANGED',
   SELECT_LOCATION = 'SELECT_LOCATION',
   LOCATION_CLICKED = 'LOCATION_CLICKED',
-  CLEAR_SELECTED_LOCATION = 'CLEAR_SELECTED_LOCATION',
+  CLEAR_INPUT_VALUE = 'CLEAR_INPUT_VALUE',
 }
 
 export interface SearchPropertyState {
@@ -36,8 +36,8 @@ interface LocationClicked {
   payload: Location;
 }
 
-interface ClearSelectedLocations {
-  type: SearchPropertyActionTypes.CLEAR_SELECTED_LOCATION;
+interface ClearInputValue {
+  type: SearchPropertyActionTypes.CLEAR_INPUT_VALUE;
 }
 
 export type SearchPropertyAction =
@@ -45,4 +45,4 @@ export type SearchPropertyAction =
   | InputChanged
   | SelectLocation
   | LocationClicked
-  | ClearSelectedLocations;
+  | ClearInputValue;
