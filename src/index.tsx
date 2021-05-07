@@ -18,10 +18,6 @@ const App = () => {
       <Route path="/" exact component={SearchProperty} />
       <Route path="/favorites" component={Favorites} />
       <Route path="/locations/:locationName" component={PropertyList} />
-      <Route
-        path="/locations/locationName/:properties?page=number"
-        component={PropertyList}
-      />
     </div>
   );
 };

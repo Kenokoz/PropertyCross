@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import sessionStorage from 'redux-persist/lib/storage/';
 
 import { propertyReducer } from './propertyReducer';
 import { searchPropertyReducer } from './searchPropertyReducer';
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: sessionStorage,
   whitelist: ['property', 'searchProperty'],
 };
 

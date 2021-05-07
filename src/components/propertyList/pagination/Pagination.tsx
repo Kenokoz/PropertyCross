@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { usedTypedSelector } from '../../../hooks/useTypedSelector';
 import { onPageChange } from '../../../store/actionCreators/property';
@@ -23,20 +23,20 @@ const Pagination: React.FC = () => {
       : [...allPages.slice(currentPage - 3, currentPage + 2)];
   };
 
-  const getLinkTo = (page: number) => {
-    return `/locations/${selectedLocation.id}/properties?page=${page}`;
-  };
-
   const dispatch = useDispatch();
+  const history = useHistory();
   const pageClickedHandler = (page: number) => {
+    history.replace('/');
     dispatch(onPageChange(page));
   };
 
   const setFirstPageHandler = () => {
+    history.replace('/');
     dispatch(onPageChange(1));
   };
 
   const setLastPageHandler = () => {
+    history.replace('/');
     dispatch(onPageChange(allPages[allPages.length - 1]));
   };
 
@@ -45,7 +45,7 @@ const Pagination: React.FC = () => {
   return (
     <nav className="pagination">
       <Link
-        to={getLinkTo(1)}
+        to={`/locations/${selectedLocation.id}`}
         className={linkClass}
         onClick={setFirstPageHandler}
       >
@@ -54,7 +54,7 @@ const Pagination: React.FC = () => {
       {getPages().map(page => (
         <Link
           key={page}
-          to={getLinkTo(page)}
+          to={`/locations/${selectedLocation.id}`}
           className={page === currentPage ? linkClass + '-active' : linkClass}
           onClick={() => pageClickedHandler(page)}
         >
@@ -62,7 +62,7 @@ const Pagination: React.FC = () => {
         </Link>
       ))}
       <Link
-        to={getLinkTo(allPages[allPages.length - 1])}
+        to={`/locations/${selectedLocation.id}`}
         className={linkClass}
         onClick={setLastPageHandler}
       >
