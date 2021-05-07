@@ -8,17 +8,21 @@ import SearchProperty from './components/searchProperty/SearchProperty';
 import PropertyList from './components/propertyList/PropertyList';
 import Favorites from './components/favorites/Favorites';
 import { store } from './store';
+import Header from './components/header/Header';
 
 const App = () => {
   return (
     <Router>
-      <Route path="/" exact component={SearchProperty} />
-      <Route path="/favorites" component={Favorites} />
-      <Route path="/locations/:locationName" component={PropertyList} />
-      <Route
-        path="/locations/:locationName/:properties?page=?number"
-        component={PropertyList}
-      />
+      <div className="container">
+        <Header />
+        <Route path="/" exact component={SearchProperty} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/locations/:locationName" component={PropertyList} />
+        <Route
+          path="/locations/locationName/:properties?page=number"
+          component={PropertyList}
+        />
+      </div>
     </Router>
   );
 };

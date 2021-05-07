@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useStore } from 'react-redux';
+import { useLocation, useParams } from 'react-router';
 
 import { usedTypedSelector } from '../../hooks/useTypedSelector';
 import { getProperties } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
-import Header from '../header/Header';
 import Pagination from './pagination/Pagination';
 import PropertyCards from './propertyCards/PropertyCards';
 import './PropertyList.scss';
@@ -15,10 +15,13 @@ const PropertyList: React.FC = () => {
     searchProperty: { selectedLocation },
   } = usedTypedSelector((state: RootState) => state);
 
-  const url = `/locations/${selectedLocation.id}/properties?page=${currentPage}`;
   const dispatch = useDispatch();
 
+  const params: { locationName: string } = useParams();
+  const page = useLocation().search.slice(6);
+
   useEffect(() => {
+    const url = `/locations/${params.locationName}/properties?page=${page}`;
     dispatch(getProperties(url));
   }, [currentPage]);
 
@@ -30,19 +33,16 @@ const PropertyList: React.FC = () => {
   }
 
   return (
-    <div className="container">
-      <Header />
-      <div className="properties">
-        <div className="properties__info">
-          <div className="properties__count">
-            <strong>{totalResults}</strong> matches
-          </div>
-          <Pagination />
+    <section className="properties">
+      <div className="properties__info">
+        <div className="properties__count">
+          <strong>{totalResults}</strong> matches
         </div>
-        <PropertyCards />
         <Pagination />
       </div>
-    </div>
+      <PropertyCards />
+      <Pagination />
+    </section>
   );
 };
 
