@@ -1,18 +1,20 @@
-import React, { ChangeEvent, FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './SearchProperty.scss';
 import SearchForm from './searchForm/SearchForm';
 import RecentSearches from './recentSearches/RecentSearches';
-import Header from './header/Header';
+import Header from '../header/Header';
 import LocationList from './locationList/LocationList';
 import {
   onInputChanged,
   onGoClicked,
   onLocationClicked,
+  clearInputValue,
 } from '../../store/actionCreators/searchProperty';
 import { Location } from '../../types/location';
 import { SearchPropertyState } from '../../types/searchProperty';
+import { onPageChange } from '../../store/actionCreators/property';
 
 interface SearchPropertyProps {
   inputValue: string;
@@ -27,6 +29,8 @@ interface SearchPropertyProps {
     history
   ): void;
   onLocationClicked(location: Location): void;
+  onPageChange(startPage: number): void;
+  clearInputValue(): void;
 }
 
 const SearchProperty: React.FC<SearchPropertyProps> = ({
@@ -36,12 +40,20 @@ const SearchProperty: React.FC<SearchPropertyProps> = ({
   onInputChanged,
   onGoClicked,
   onLocationClicked,
+  onPageChange,
+  clearInputValue,
 }) => {
   const items = showLocations ? (
     <LocationList onClicked={onLocationClicked} />
   ) : (
-    <RecentSearches />
+    <RecentSearches onClicked={onLocationClicked} />
   );
+
+  useEffect(() => {
+    const startPage = 1;
+    onPageChange(startPage);
+    clearInputValue();
+  }, []);
 
   return (
     <div className="container">
@@ -73,11 +85,14 @@ const mapStateToProps = ({
   showLocations: searchProperty.showLocations,
   locations: searchProperty.locations,
   location: searchProperty.selectedLocation,
+  recent: searchProperty.recentSearches,
 });
 const mapDispatchToProps = {
   onInputChanged,
   onGoClicked,
   onLocationClicked,
+  onPageChange,
+  clearInputValue,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchProperty);

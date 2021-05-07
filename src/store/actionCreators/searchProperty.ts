@@ -56,6 +56,6 @@ export const onLocationClicked = (
   payload: location,
 });
 
-export const clearSelectedLocation = (): SearchPropertyAction => ({
-  type: SearchPropertyActionTypes.CLEAR_SELECTED_LOCATION,
+export const clearInputValue = (): SearchPropertyAction => ({
+  type: SearchPropertyActionTypes.CLEAR_INPUT_VALUE,
 });

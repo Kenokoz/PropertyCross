@@ -8,6 +8,8 @@ const initialState: PropertyState = {
   properties: [],
   loading: true,
   error: null,
+  totalResults: 0,
+  currentPage: 1,
 };
 
 export const propertyReducer = (
@@ -16,11 +18,18 @@ export const propertyReducer = (
 ): PropertyState => {
   switch (action.type) {
     case PropertyActionTypes.FETCH_PROPERTIES:
-      return { properties: [], loading: true, error: null };
+      return { ...state };
     case PropertyActionTypes.FETCH_PROPERTIES_SUCCESS:
-      return { properties: action.payload, loading: false, error: null };
+      return {
+        ...state,
+        properties: action.payload.properties,
+        loading: false,
+        totalResults: action.payload.totalResults,
+      };
     case PropertyActionTypes.FETCH_PROPERTIES_ERROR:
-      return { properties: [], loading: false, error: action.payload };
+      return { ...state, error: action.payload };
+    case PropertyActionTypes.PAGE_CHANGE:
+      return { ...state, currentPage: action.payload };
     default:
       return state;
   }

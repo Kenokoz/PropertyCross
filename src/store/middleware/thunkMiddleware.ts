@@ -10,7 +10,7 @@ export const thunkMiddleware = ({
   dispatch: Dispatch<PropertyAction>;
   getState: () => RootState;
 }) => next => async action => {
-  if (action.payload.url) {
+  if (action.payload?.url) {
     const request: Request = action.payload;
 
     try {

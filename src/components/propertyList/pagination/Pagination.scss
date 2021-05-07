@@ -1,0 +1,42 @@
+@import '../../../assets/styles/constants.scss';
+
+.pagination {
+  display: flex;
+  justify-content: center;
+
+  &__link {
+    font-size: 20px;
+    color: black;
+    float: left;
+    padding: 7px 14px;
+    text-decoration: none;
+
+    &-active {
+      font-size: 20px;
+      padding: 7px 14px;
+      text-decoration: none;
+      background-color: $base-color;
+      color: white;
+      border-radius: 5px;
+    }
+
+    &:hover {
+      background-color: $hover-color;
+      border-radius: 5px;
+      color: white;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .pagination {
+    &__link {
+      padding: 4px 8px;
+      font-size: 13px;
+      &-active {
+        padding: 4px 8px;
+        font-size: 13px;
+      }
+    }
+  }
+}

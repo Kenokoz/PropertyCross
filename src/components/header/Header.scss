@@ -1,5 +1,5 @@
-@import '../../../assets/styles/constants';
-@import '../../../assets/styles/index';
+@import '../../assets/styles/constants';
+@import '../../assets/styles/index';
 
 .header {
   background-color: $base-color;
@@ -28,7 +28,7 @@
     color: white;
 
     &:hover {
-      background-color: rgb(114, 114, 192);
+      background-color: $hover-color;
     }
   }
 }
