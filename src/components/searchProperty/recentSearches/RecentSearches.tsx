@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './RecentSearches.scss';
-import { usedTypedSelector } from '../../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
 import { Location } from '../../../types/location';
 
@@ -11,7 +11,7 @@ interface RecentSearchesProps {
 }
 
 const RecentSearches: React.FC<RecentSearchesProps> = ({ onClicked }) => {
-  const { recentSearches } = usedTypedSelector(
+  const { recentSearches } = useTypedSelector(
     (state: RootState) => state.searchProperty
   );
 

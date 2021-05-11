@@ -23,3 +23,8 @@ export const onPageChange = (page: number): PropertyAction => ({
   type: PropertyActionTypes.PAGE_CHANGE,
   payload: page,
 });
+
+export const onSelectProperty = (propId: string): PropertyAction => ({
+  type: PropertyActionTypes.SELECT_PROPERTY,
+  payload: propId,
+});
