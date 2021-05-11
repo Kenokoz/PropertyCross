@@ -1,0 +1,57 @@
+@import '../../assets/styles/constants.scss';
+
+.property__info {
+  padding-bottom: 40px;
+}
+
+.info {
+  &__header {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  &__item {
+    position: relative;
+    font-size: 20px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    align-items: center;
+  }
+
+  &__currency {
+    font-weight: bold;
+  }
+
+  &__favorite {
+    font-size: 35px;
+    cursor: pointer;
+    transition: color 0.1s linear;
+
+    &:hover {
+      color: yellow;
+    }
+  }
+
+  &__img {
+    text-align: center;
+
+    & img {
+      width: 80%;
+      border-radius: 10px;
+    }
+  }
+
+  &__content {
+    margin: 10px 0;
+  }
+
+  &__summary {
+    margin-bottom: 5px;
+  }
+}

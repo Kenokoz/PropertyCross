@@ -3,6 +3,7 @@ import React from 'react';
 import './PropertyCards.scss';
 import { usedTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
+import { Link } from 'react-router-dom';
 
 const PropertyCards: React.FC = () => {
   const { properties } = usedTypedSelector(
@@ -14,19 +15,22 @@ const PropertyCards: React.FC = () => {
     <>
       {properties.map(({ id, title, imgUrl, priceCurrency, price }) => (
         <div key={id} className="properties__card">
-          <div className="property__img">
+          <Link to="/locations/:locationName/1" className="property__img">
             <img src={imgUrl} alt="" />
-          </div>
+          </Link>
           <div className="property__descr">
             <div className="property__price">
               {price}
               <span className="property__currency">{priceCurrency}</span>
             </div>
-            <div className="property__location">
+            <Link
+              to="/locations/:locationName/1"
+              className="property__location"
+            >
               {title.length > amountOfSymbols
                 ? `${title.slice(0, amountOfSymbols)}...`
                 : title}
-            </div>
+            </Link>
           </div>
           <div className="property__favorite">
             <i className="fas fa-star"></i>

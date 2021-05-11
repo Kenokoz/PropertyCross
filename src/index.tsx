@@ -10,6 +10,7 @@ import PropertyList from './components/propertyList/PropertyList';
 import Favorites from './components/favorites/Favorites';
 import { store, persistor } from './store';
 import Header from './components/header/Header';
+import PropertyInfo from './components/propertyInfo/propertyInfo';
 
 const App = () => (
   <div className="container">
