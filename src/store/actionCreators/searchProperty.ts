@@ -59,3 +59,7 @@ export const onLocationClicked = (
 export const clearInputValue = (): SearchPropertyAction => ({
   type: SearchPropertyActionTypes.CLEAR_INPUT_VALUE,
 });
+
+export const resetShowLocations = (): SearchPropertyAction => ({
+  type: SearchPropertyActionTypes.RESET_SHOW_LOCATIONS,
+});

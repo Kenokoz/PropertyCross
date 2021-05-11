@@ -1,14 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './PropertyCards.scss';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
-import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { onSelectProperty } from '../../../store/actionCreators/property';
 
 const PropertyCards: React.FC = () => {
-  const { properties } = useTypedSelector((state: RootState) => state.property);
+  const {
+    property: { properties },
+    searchProperty: { selectedLocation },
+  } = useTypedSelector((state: RootState) => state);
 
   const dispatch = useDispatch();
 
@@ -23,7 +26,7 @@ const PropertyCards: React.FC = () => {
       {properties.map(({ id, title, imgUrl, priceCurrency, price }) => (
         <div key={id} className="properties__card">
           <Link
-            to="/locations/:locationName/1"
+            to={`/locations/${selectedLocation.id}/${id}`}
             className="property__img"
             onClick={() => selectPropertyHandler(id)}
           >
@@ -35,7 +38,7 @@ const PropertyCards: React.FC = () => {
               <span className="property__currency">{priceCurrency}</span>
             </div>
             <Link
-              to="/locations/:locationName/1"
+              to={`/locations/${selectedLocation.id}/${id}`}
               className="property__location"
               onClick={() => selectPropertyHandler(id)}
             >

@@ -6,6 +6,7 @@ export enum SearchPropertyActionTypes {
   SELECT_LOCATION = 'SELECT_LOCATION',
   LOCATION_CLICKED = 'LOCATION_CLICKED',
   CLEAR_INPUT_VALUE = 'CLEAR_INPUT_VALUE',
+  RESET_SHOW_LOCATIONS = 'RESET_SHOW_LOCATIONS',
 }
 
 export interface SearchPropertyState {
@@ -40,9 +41,14 @@ interface ClearInputValue {
   type: SearchPropertyActionTypes.CLEAR_INPUT_VALUE;
 }
 
+interface ResetShowLocations {
+  type: SearchPropertyActionTypes.RESET_SHOW_LOCATIONS;
+}
+
 export type SearchPropertyAction =
   | ShowLocation
   | InputChanged
   | SelectLocation
   | LocationClicked
-  | ClearInputValue;
+  | ClearInputValue
+  | ResetShowLocations;
