@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
-import { usedTypedSelector } from '../../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { onPageChange } from '../../../store/actionCreators/property';
 import { RootState } from '../../../store/reducers/combineReducer';
 import './Pagination.scss';
@@ -11,7 +11,7 @@ const Pagination: React.FC = () => {
   const {
     property: { totalResults, currentPage },
     searchProperty: { selectedLocation },
-  } = usedTypedSelector((state: RootState) => state);
+  } = useTypedSelector((state: RootState) => state);
 
   let allPages = [];
   const getPages = () => {

@@ -13,6 +13,7 @@
   }
 
   &__item {
+    padding: 0 10px;
     position: relative;
     font-size: 20px;
   }
@@ -42,16 +43,52 @@
     text-align: center;
 
     & img {
-      width: 80%;
+      width: 100%;
       border-radius: 10px;
     }
   }
 
   &__content {
     margin: 10px 0;
+    display: flex;
   }
 
-  &__summary {
-    margin-bottom: 5px;
+  &__concise {
+    width: 40%;
+    margin-left: 50px;
+  }
+
+  &__specification {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .info {
+    &__item {
+      font-size: 17px;
+    }
+
+    &__favorite {
+      font-size: 25px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .info {
+    &__content {
+      margin: 10px 0;
+      display: block;
+    }
+
+    &__concise {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    &__img img {
+      width: 80%;
+    }
   }
 }

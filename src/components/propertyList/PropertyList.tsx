@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { usedTypedSelector } from '../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getProperties } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
 import Pagination from './pagination/Pagination';
@@ -12,7 +12,7 @@ const PropertyList: React.FC = () => {
   const {
     property: { loading, error, totalResults, currentPage },
     searchProperty: { selectedLocation },
-  } = usedTypedSelector((state: RootState) => state);
+  } = useTypedSelector((state: RootState) => state);
 
   const dispatch = useDispatch();
 

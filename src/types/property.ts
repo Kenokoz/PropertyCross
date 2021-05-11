@@ -4,6 +4,7 @@ export interface PropertyState {
   error: null | string;
   totalResults: number;
   currentPage: number;
+  selectedProperty: Property;
 }
 
 export enum PropertyActionTypes {
@@ -11,6 +12,7 @@ export enum PropertyActionTypes {
   FETCH_PROPERTIES_SUCCESS = 'FETCH_PROPERTIES_SUCCESS',
   FETCH_PROPERTIES_ERROR = 'FETCH_PROPERTIES_ERROR',
   PAGE_CHANGE = 'PAGE_CHANGE',
+  SELECT_PROPERTY = 'SELECT_PROPERTY',
 }
 
 interface Property {
@@ -19,6 +21,9 @@ interface Property {
   imgUrl: string;
   price: string;
   priceCurrency: string;
+  bathroomNumber: number;
+  bedroomNumber: number;
+  summary: string;
 }
 
 export interface Request {
@@ -47,8 +52,14 @@ interface PageChange {
   payload: number;
 }
 
+interface SelectProperty {
+  type: PropertyActionTypes.SELECT_PROPERTY;
+  payload: string;
+}
+
 export type PropertyAction =
   | FetchPropertiesAction
   | FetchPropertiesSuccessAction
   | FetchPropertiesErrorAction
-  | PageChange;
+  | PageChange
+  | SelectProperty;
