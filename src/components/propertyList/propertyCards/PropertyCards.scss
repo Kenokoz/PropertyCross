@@ -10,13 +10,11 @@
     height: 120px;
     box-shadow: 0px 1px 16px #000;
     border-radius: 10px;
-    cursor: pointer;
 
     transition: all 0.15s linear;
 
     &:hover {
       background-color: $hover-color;
-      color: white;
     }
   }
 }
@@ -34,7 +32,14 @@
   }
 
   &__location {
+    text-decoration: none;
     margin-top: 10px;
+    color: black;
+    transition: color 0.2s linear;
+
+    &:hover {
+      color: white;
+    }
   }
 
   &__currency {
@@ -50,6 +55,7 @@
     z-index: 1;
     font-size: 25px;
     color: white;
+    cursor: pointer;
 
     transition: color 0.2s linear;
 

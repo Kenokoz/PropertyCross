@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
-import sessionStorage from 'redux-persist/lib/storage/';
+import sessionStorage from 'redux-persist/lib/storage/session';
 
 import { propertyReducer } from './propertyReducer';
 import { searchPropertyReducer } from './searchPropertyReducer';

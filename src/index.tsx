@@ -10,6 +10,7 @@ import PropertyList from './components/propertyList/PropertyList';
 import Favorites from './components/favorites/Favorites';
 import { store, persistor } from './store';
 import Header from './components/header/Header';
+import PropertyInfo from './components/propertyInfo/propertyInfo';
 
 const App = () => {
   return (
@@ -17,7 +18,12 @@ const App = () => {
       <Header />
       <Route path="/" exact component={SearchProperty} />
       <Route path="/favorites" component={Favorites} />
-      <Route path="/locations/:locationName" component={PropertyList} />
+      <Route path="/locations/:locationName" exact component={PropertyList} />
+      <Route
+        path="/locations/:locationName/:id"
+        exact
+        component={PropertyInfo}
+      />
     </div>
   );
 };
