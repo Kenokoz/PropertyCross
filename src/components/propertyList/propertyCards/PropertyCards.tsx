@@ -5,11 +5,14 @@ import { Link } from 'react-router-dom';
 import './PropertyCards.scss';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
-import { onSelectProperty } from '../../../store/actionCreators/property';
+import {
+  onToggleFavorite,
+  onSelectProperty,
+} from '../../../store/actionCreators/property';
 
 const PropertyCards: React.FC = () => {
   const {
-    property: { properties },
+    property: { properties, favorites },
     searchProperty: { selectedLocation },
   } = useTypedSelector((state: RootState) => state);
 
@@ -17,6 +20,10 @@ const PropertyCards: React.FC = () => {
 
   const selectPropertyHandler = (id: string) => {
     dispatch(onSelectProperty(id));
+  };
+
+  const toggleFavoriteHandler = (id: string) => {
+    dispatch(onToggleFavorite(id));
   };
 
   const amountOfSymbols = 35;
@@ -47,7 +54,14 @@ const PropertyCards: React.FC = () => {
                 : title}
             </Link>
           </div>
-          <div className="property__favorite">
+          <div
+            className={
+              favorites.find(fav => fav.id === id)
+                ? 'property__favorite active'
+                : 'property__favorite'
+            }
+            onClick={() => toggleFavoriteHandler(id)}
+          >
             <i className="fas fa-star"></i>
           </div>
         </div>

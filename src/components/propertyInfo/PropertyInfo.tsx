@@ -30,7 +30,7 @@ const PropertyInfo: React.FC<PropertyInfoProps> = () => {
             <div className="info__location">{title}</div>
           </div>
           <div className="info__favorite">
-            <i className="fas fa-plus-square"></i>
+            <i className="fas fa-star"></i>
           </div>
         </div>
 

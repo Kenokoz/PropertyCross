@@ -48,7 +48,7 @@
     text-transform: uppercase;
   }
 
-  &__favorite i {
+  &__favorite {
     position: absolute;
     top: 8%;
     right: 2%;
@@ -62,6 +62,10 @@
     &:hover {
       color: yellow;
     }
+  }
+
+  &__favorite.active {
+    color: yellow;
   }
 }
 

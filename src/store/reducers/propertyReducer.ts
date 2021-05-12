@@ -20,6 +20,7 @@ const initialState: PropertyState = {
     bathroomNumber: 0,
     summary: '',
   },
+  favorites: [],
 };
 
 export const propertyReducer = (
@@ -41,11 +42,21 @@ export const propertyReducer = (
     case PropertyActionTypes.PAGE_CHANGE:
       return { ...state, currentPage: action.payload };
     case PropertyActionTypes.SELECT_PROPERTY: {
-      const property = [...state.properties].find(prop => {
-        return prop.id === action.payload;
-      });
-
+      const property = state.properties.find(
+        prop => prop.id === action.payload
+      );
       return { ...state, selectedProperty: property };
+    }
+    case PropertyActionTypes.TOGGLE_FAVORITE: {
+      const favorite = state.properties.find(
+        prop => prop.id === action.payload
+      );
+      const isAdded = state.favorites.find(fav => fav.id === favorite.id);
+      const updatedFaves = isAdded
+        ? state.favorites.filter(fav => fav.id !== favorite.id)
+        : [...state.favorites, favorite];
+
+      return { ...state, favorites: updatedFaves };
     }
     default:
       return state;

@@ -5,6 +5,7 @@ export interface PropertyState {
   totalResults: number;
   currentPage: number;
   selectedProperty: Property;
+  favorites: Property[];
 }
 
 export enum PropertyActionTypes {
@@ -13,9 +14,10 @@ export enum PropertyActionTypes {
   FETCH_PROPERTIES_ERROR = 'FETCH_PROPERTIES_ERROR',
   PAGE_CHANGE = 'PAGE_CHANGE',
   SELECT_PROPERTY = 'SELECT_PROPERTY',
+  TOGGLE_FAVORITE = 'TOGGLE_FAVORITE',
 }
 
-interface Property {
+export interface Property {
   id: string;
   title: string;
   imgUrl: string;
@@ -57,9 +59,15 @@ interface SelectProperty {
   payload: string;
 }
 
+interface ToggleFavorite {
+  type: PropertyActionTypes.TOGGLE_FAVORITE;
+  payload: string;
+}
+
 export type PropertyAction =
   | FetchPropertiesAction
   | FetchPropertiesSuccessAction
   | FetchPropertiesErrorAction
   | PageChange
-  | SelectProperty;
+  | SelectProperty
+  | ToggleFavorite;

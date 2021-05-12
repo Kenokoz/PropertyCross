@@ -28,3 +28,8 @@ export const onSelectProperty = (propId: string): PropertyAction => ({
   type: PropertyActionTypes.SELECT_PROPERTY,
   payload: propId,
 });
+
+export const onToggleFavorite = (propId: string): PropertyAction => ({
+  type: PropertyActionTypes.TOGGLE_FAVORITE,
+  payload: propId,
+});
