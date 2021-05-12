@@ -3,7 +3,7 @@
 .properties {
   &__card {
     position: relative;
-    margin: 0 20px 15px;
+    margin-bottom: 15px;
     display: flex;
     padding: 14px 0 0 20px;
     background-color: #e4e5e8;
@@ -60,7 +60,7 @@
     transition: color 0.1s linear;
 
     &:hover {
-      color: yellow;
+      color: rgb(168, 141, 185);
     }
   }
 
@@ -73,12 +73,14 @@
   .properties {
     &__card {
       padding: 14px 0 0 14px;
+      margin: 0 10px 15px;
     }
   }
 
   .property {
     &__descr {
       font-size: 14px;
+      width: 160px;
     }
 
     &__favorite i {
