@@ -7,9 +7,7 @@ import { RootState } from '../../store/reducers/combineReducer';
 import { Property } from '../../types/property';
 import './PropertyInfo.scss';
 
-export interface PropertyInfoProps {}
-
-const PropertyInfo: React.FC<PropertyInfoProps> = () => {
+const PropertyInfo: React.FC = () => {
   const { selectedProperty, favorites } = useTypedSelector(
     (state: RootState) => state.property
   );
@@ -55,10 +53,9 @@ const PropertyInfo: React.FC<PropertyInfoProps> = () => {
             <i className="fas fa-star"></i>
           </div>
         </div>
-
         <div className="info__content">
           <div className="info__img">
-            <img src={imgUrl} alt="" />
+            <img src={imgUrl} alt="image" />
           </div>
           <div className="info__concise">
             <div className="info__specification">

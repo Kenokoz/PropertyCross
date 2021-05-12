@@ -4,10 +4,13 @@ import {
   PropertyActionTypes,
 } from '../../types/property';
 
-export const getProperties = (url: string): PropertyAction => ({
+export const getProperties = (
+  locId: string,
+  currentPage: number
+): PropertyAction => ({
   type: PropertyActionTypes.FETCH_PROPERTIES,
   payload: {
-    url,
+    url: `/locations/${locId}/properties?page=${currentPage}`,
     getData: getDataSucces,
     getDataError: getPropertiesError,
   },

@@ -17,8 +17,7 @@ const PropertyList: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const url = `/locations/${selectedLocation.id}/properties?page=${currentPage}`;
-    dispatch(getProperties(url));
+    dispatch(getProperties(selectedLocation.id, currentPage));
   }, [currentPage]);
 
   if (loading) {

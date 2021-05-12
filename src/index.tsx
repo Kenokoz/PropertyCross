@@ -12,21 +12,15 @@ import { store, persistor } from './store';
 import Header from './components/header/Header';
 import PropertyInfo from './components/propertyInfo/propertyInfo';
 
-const App = () => {
-  return (
-    <div className="container">
-      <Header />
-      <Route path="/" exact component={SearchProperty} />
-      <Route path="/favorites" component={Favorites} />
-      <Route path="/locations/:locationName" exact component={PropertyList} />
-      <Route
-        path="/locations/:locationName/:id"
-        exact
-        component={PropertyInfo}
-      />
-    </div>
-  );
-};
+const App = () => (
+  <div className="container">
+    <Header />
+    <Route path="/" exact component={SearchProperty} />
+    <Route path="/favorites" component={Favorites} />
+    <Route path="/locations/:locationName" exact component={PropertyList} />
+    <Route path="/locations/:locationName/:id" exact component={PropertyInfo} />
+  </div>
+);
 
 ReactDOM.render(
   <Provider store={store}>
