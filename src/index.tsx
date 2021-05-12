@@ -11,17 +11,14 @@ import Favorites from './components/favorites/Favorites';
 import { store, persistor } from './store';
 import Header from './components/header/Header';
 
-const App = () => {
-  return (
-    <div className="container">
-      <Header />
-      <Route path="/" exact component={SearchProperty} />
-      <Route path="/favorites" component={Favorites} />
-      <Route path="/locations/:locationName" component={PropertyList} />
-    </div>
-  );
-};
-
+const App = () => (
+  <div className="container">
+    <Header />
+    <Route path="/" exact component={SearchProperty} />
+    <Route path="/favorites" component={Favorites} />
+    <Route path="/locations/:locationName" component={PropertyList} />
+  </div>
+);
 ReactDOM.render(
   <Provider store={store}>
     <Router>
