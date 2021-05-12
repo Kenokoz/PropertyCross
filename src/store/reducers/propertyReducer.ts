@@ -10,6 +10,16 @@ const initialState: PropertyState = {
   error: null,
   totalResults: 0,
   currentPage: 1,
+  selectedProperty: {
+    id: '',
+    title: '',
+    imgUrl: '',
+    price: '',
+    priceCurrency: '',
+    bedroomNumber: 0,
+    bathroomNumber: 0,
+    summary: '',
+  },
 };
 
 export const propertyReducer = (
@@ -30,6 +40,13 @@ export const propertyReducer = (
       return { ...state, error: action.payload };
     case PropertyActionTypes.PAGE_CHANGE:
       return { ...state, currentPage: action.payload };
+    case PropertyActionTypes.SELECT_PROPERTY: {
+      const property = [...state.properties].find(
+        prop => prop.id === action.payload
+      );
+
+      return { ...state, selectedProperty: property };
+    }
     default:
       return state;
   }

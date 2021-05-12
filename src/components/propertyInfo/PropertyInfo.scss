@@ -1,0 +1,94 @@
+@import '../../assets/styles/constants.scss';
+
+.property__info {
+  padding-bottom: 40px;
+}
+
+.info {
+  &__header {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  &__item {
+    padding: 0 10px;
+    position: relative;
+    font-size: 20px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+    align-items: center;
+  }
+
+  &__currency {
+    font-weight: bold;
+  }
+
+  &__favorite {
+    font-size: 35px;
+    cursor: pointer;
+    transition: color 0.1s linear;
+
+    &:hover {
+      color: yellow;
+    }
+  }
+
+  &__img {
+    text-align: center;
+
+    & img {
+      width: 100%;
+      border-radius: 10px;
+    }
+  }
+
+  &__content {
+    margin: 10px 0;
+    display: flex;
+  }
+
+  &__concise {
+    width: 40%;
+    margin-left: 50px;
+  }
+
+  &__specification {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .info {
+    &__item {
+      font-size: 17px;
+    }
+
+    &__favorite {
+      font-size: 25px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .info {
+    &__content {
+      margin: 10px 0;
+      display: block;
+    }
+
+    &__concise {
+      margin-left: 0;
+      width: 100%;
+    }
+
+    &__img img {
+      width: 80%;
+    }
+  }
+}

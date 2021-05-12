@@ -1,32 +1,51 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import './PropertyCards.scss';
-import { usedTypedSelector } from '../../../hooks/useTypedSelector';
+import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { RootState } from '../../../store/reducers/combineReducer';
+import { onSelectProperty } from '../../../store/actionCreators/property';
 
 const PropertyCards: React.FC = () => {
-  const { properties } = usedTypedSelector(
-    (state: RootState) => state.property
-  );
+  const {
+    property: { properties },
+    searchProperty: { selectedLocation },
+  } = useTypedSelector((state: RootState) => state);
+
+  const dispatch = useDispatch();
+
+  const selectPropertyHandler = (id: string) => {
+    dispatch(onSelectProperty(id));
+  };
+
   const amountOfSymbols = 35;
 
   return (
     <>
       {properties.map(({ id, title, imgUrl, priceCurrency, price }) => (
         <div key={id} className="properties__card">
-          <div className="property__img">
+          <Link
+            to={`/locations/${selectedLocation.id}/${id}`}
+            className="property__img"
+            onClick={() => selectPropertyHandler(id)}
+          >
             <img src={imgUrl} alt="" />
-          </div>
+          </Link>
           <div className="property__descr">
             <div className="property__price">
               {price}
               <span className="property__currency">{priceCurrency}</span>
             </div>
-            <div className="property__location">
+            <Link
+              to={`/locations/${selectedLocation.id}/${id}`}
+              className="property__location"
+              onClick={() => selectPropertyHandler(id)}
+            >
               {title.length > amountOfSymbols
                 ? `${title.slice(0, amountOfSymbols)}...`
                 : title}
-            </div>
+            </Link>
           </div>
           <div className="property__favorite">
             <i className="fas fa-star"></i>
