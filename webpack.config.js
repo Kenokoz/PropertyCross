@@ -22,7 +22,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '',
+    publicPath: '/',
   },
   optimization: optimization(),
   devtool: isDev ? 'source-map' : false,
@@ -82,5 +82,6 @@ module.exports = {
   ],
   devServer: {
     open: true,
+    historyApiFallback: true,
   },
 };
