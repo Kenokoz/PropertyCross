@@ -4,9 +4,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { RootState } from '../../store/reducers/combineReducer';
 import './PropertyInfo.scss';
 
-export interface PropertyInfoProps {}
-
-const PropertyInfo: React.FC<PropertyInfoProps> = () => {
+const PropertyInfo: React.FC = () => {
   const {
     title,
     price,
@@ -33,10 +31,9 @@ const PropertyInfo: React.FC<PropertyInfoProps> = () => {
             <i className="fas fa-plus-square"></i>
           </div>
         </div>
-
         <div className="info__content">
           <div className="info__img">
-            <img src={imgUrl} alt="" />
+            <img src={imgUrl} alt="image" />
           </div>
           <div className="info__concise">
             <div className="info__specification">

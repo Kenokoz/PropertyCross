@@ -41,9 +41,9 @@ export const propertyReducer = (
     case PropertyActionTypes.PAGE_CHANGE:
       return { ...state, currentPage: action.payload };
     case PropertyActionTypes.SELECT_PROPERTY: {
-      const property = [...state.properties].find(prop => {
-        return prop.id === action.payload;
-      });
+      const property = [...state.properties].find(
+        prop => prop.id === action.payload
+      );
 
       return { ...state, selectedProperty: property };
     }
