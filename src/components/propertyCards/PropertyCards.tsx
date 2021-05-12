@@ -3,14 +3,18 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './PropertyCards.scss';
-import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { RootState } from '../../../store/reducers/combineReducer';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { RootState } from '../../store/reducers/combineReducer';
 import {
   onToggleFavorite,
   onSelectProperty,
-} from '../../../store/actionCreators/property';
+} from '../../store/actionCreators/property';
 
-const PropertyCards: React.FC = () => {
+interface PropertyCardsProps {
+  showFaves: boolean;
+}
+
+const PropertyCards: React.FC<PropertyCardsProps> = ({ showFaves }) => {
   const {
     property: { properties, favorites },
     searchProperty: { selectedLocation },
@@ -27,10 +31,11 @@ const PropertyCards: React.FC = () => {
   };
 
   const amountOfSymbols = 35;
+  const items = showFaves ? favorites : properties;
 
   return (
     <>
-      {properties.map(({ id, title, imgUrl, priceCurrency, price }) => (
+      {items.map(({ id, title, imgUrl, priceCurrency, price }) => (
         <div key={id} className="properties__card">
           <Link
             to={`/locations/${selectedLocation.id}/${id}`}

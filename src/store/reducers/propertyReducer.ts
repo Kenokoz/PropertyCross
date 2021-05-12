@@ -48,17 +48,24 @@ export const propertyReducer = (
       return { ...state, selectedProperty: property };
     }
     case PropertyActionTypes.TOGGLE_FAVORITE: {
-      const favorite = state.properties.find(
-        prop => prop.id === action.payload
-      );
-      const isAdded = state.favorites.find(fav => fav.id === favorite.id);
-      const updatedFaves = isAdded
-        ? state.favorites.filter(fav => fav.id !== favorite.id)
-        : [...state.favorites, favorite];
-
-      return { ...state, favorites: updatedFaves };
+      return {
+        ...state,
+        favorites: getUpdatedFaves(
+          state.properties,
+          state.favorites,
+          action.payload
+        ),
+      };
     }
     default:
       return state;
   }
 };
+
+function getUpdatedFaves(properties, favorites, propId) {
+  const favorite = properties.find(prop => prop.id === propId);
+  const isAdded = favorites.find(fav => fav.id === favorite.id);
+  return isAdded
+    ? favorites.filter(fav => fav.id !== favorite.id)
+    : [...favorites, favorite];
+}

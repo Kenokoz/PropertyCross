@@ -5,7 +5,7 @@ import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getProperties } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
 import Pagination from './pagination/Pagination';
-import PropertyCards from './propertyCards/PropertyCards';
+import PropertyCards from '../propertyCards/PropertyCards';
 import './PropertyList.scss';
 
 const PropertyList: React.FC = () => {
@@ -36,7 +36,7 @@ const PropertyList: React.FC = () => {
         </div>
         <Pagination />
       </div>
-      <PropertyCards />
+      <PropertyCards showFaves={false} />
       <Pagination />
     </section>
   );
