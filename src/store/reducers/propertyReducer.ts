@@ -50,11 +50,7 @@ export const propertyReducer = (
     case PropertyActionTypes.TOGGLE_FAVORITE: {
       return {
         ...state,
-        favorites: getUpdatedFaves(
-          state.properties,
-          state.favorites,
-          action.payload
-        ),
+        favorites: getUpdatedFaves(state.favorites, action.payload),
       };
     }
     default:
@@ -62,10 +58,9 @@ export const propertyReducer = (
   }
 };
 
-function getUpdatedFaves(properties, favorites, propId) {
-  const favorite = properties.find(prop => prop.id === propId);
-  const isAdded = favorites.find(fav => fav.id === favorite.id);
+function getUpdatedFaves(favorites, property) {
+  const isAdded = favorites.find(fav => fav.id === property.id);
   return isAdded
-    ? favorites.filter(fav => fav.id !== favorite.id)
-    : [...favorites, favorite];
+    ? favorites.filter(fav => fav.id !== isAdded.id)
+    : [...favorites, property];
 }

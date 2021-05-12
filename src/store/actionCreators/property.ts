@@ -1,4 +1,8 @@
-import { PropertyAction, PropertyActionTypes } from '../../types/property';
+import {
+  Property,
+  PropertyAction,
+  PropertyActionTypes,
+} from '../../types/property';
 
 export const getProperties = (url: string): PropertyAction => ({
   type: PropertyActionTypes.FETCH_PROPERTIES,
@@ -29,7 +33,7 @@ export const onSelectProperty = (propId: string): PropertyAction => ({
   payload: propId,
 });
 
-export const onToggleFavorite = (propId: string): PropertyAction => ({
+export const onToggleFavorite = (prop: Property): PropertyAction => ({
   type: PropertyActionTypes.TOGGLE_FAVORITE,
-  payload: propId,
+  payload: prop,
 });

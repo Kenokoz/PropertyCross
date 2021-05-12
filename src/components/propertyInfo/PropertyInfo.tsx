@@ -1,13 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import { onToggleFavorite } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
+import { Property } from '../../types/property';
 import './PropertyInfo.scss';
 
 export interface PropertyInfoProps {}
 
 const PropertyInfo: React.FC<PropertyInfoProps> = () => {
+  const { selectedProperty, favorites } = useTypedSelector(
+    (state: RootState) => state.property
+  );
+
   const {
+    id,
     title,
     price,
     priceCurrency,
@@ -15,7 +23,18 @@ const PropertyInfo: React.FC<PropertyInfoProps> = () => {
     bedroomNumber,
     bathroomNumber,
     summary,
-  } = useTypedSelector((state: RootState) => state.property.selectedProperty);
+  } = selectedProperty;
+
+  const dispatch = useDispatch();
+
+  const toggleFavoriteHandler = (prop: Property) => {
+    dispatch(onToggleFavorite(prop));
+  };
+
+  const getStyles = id =>
+    favorites.find(fav => fav.id === id)
+      ? 'info__favorite active'
+      : 'info__favorite';
 
   return (
     <section className="property__info">
@@ -29,7 +48,10 @@ const PropertyInfo: React.FC<PropertyInfoProps> = () => {
             </div>
             <div className="info__location">{title}</div>
           </div>
-          <div className="info__favorite">
+          <div
+            className={getStyles(id)}
+            onClick={() => toggleFavoriteHandler(selectedProperty)}
+          >
             <i className="fas fa-star"></i>
           </div>
         </div>

@@ -60,12 +60,12 @@
     transition: color 0.1s linear;
 
     &:hover {
-      color: rgb(175, 201, 241);
+      color: yellow;
     }
   }
 
   &__favorite.active {
-    color: yellow;
+    color: $base-color;
   }
 }
 

@@ -9,6 +9,7 @@ import {
   onToggleFavorite,
   onSelectProperty,
 } from '../../store/actionCreators/property';
+import { Property } from '../../types/property';
 
 interface PropertyCardsProps {
   showFaves: boolean;
@@ -26,51 +27,54 @@ const PropertyCards: React.FC<PropertyCardsProps> = ({ showFaves }) => {
     dispatch(onSelectProperty(id));
   };
 
-  const toggleFavoriteHandler = (id: string) => {
-    dispatch(onToggleFavorite(id));
+  const toggleFavoriteHandler = (prop: Property) => {
+    dispatch(onToggleFavorite(prop));
   };
 
   const amountOfSymbols = 35;
   const items = showFaves ? favorites : properties;
+  const getStyles = id =>
+    favorites.find(fav => fav.id === id)
+      ? 'property__favorite active'
+      : 'property__favorite';
 
   return (
     <>
-      {items.map(({ id, title, imgUrl, priceCurrency, price }) => (
-        <div key={id} className="properties__card">
-          <Link
-            to={`/locations/${selectedLocation.id}/${id}`}
-            className="property__img"
-            onClick={() => selectPropertyHandler(id)}
-          >
-            <img src={imgUrl} alt="" />
-          </Link>
-          <div className="property__descr">
-            <div className="property__price">
-              {price}
-              <span className="property__currency">{priceCurrency}</span>
-            </div>
+      {items.map(prop => {
+        const { id, imgUrl, price, priceCurrency, title } = prop;
+        return (
+          <div key={id} className="properties__card">
             <Link
               to={`/locations/${selectedLocation.id}/${id}`}
-              className="property__location"
+              className="property__img"
               onClick={() => selectPropertyHandler(id)}
             >
-              {title.length > amountOfSymbols
-                ? `${title.slice(0, amountOfSymbols)}...`
-                : title}
+              <img src={imgUrl} alt="" />
             </Link>
+            <div className="property__descr">
+              <div className="property__price">
+                {price}
+                <span className="property__currency">{priceCurrency}</span>
+              </div>
+              <Link
+                to={`/locations/${selectedLocation.id}/${id}`}
+                className="property__location"
+                onClick={() => selectPropertyHandler(id)}
+              >
+                {title.length > amountOfSymbols
+                  ? `${title.slice(0, amountOfSymbols)}...`
+                  : title}
+              </Link>
+            </div>
+            <div
+              className={getStyles(id)}
+              onClick={() => toggleFavoriteHandler(prop)}
+            >
+              <i className="fas fa-star"></i>
+            </div>
           </div>
-          <div
-            className={
-              favorites.find(fav => fav.id === id)
-                ? 'property__favorite active'
-                : 'property__favorite'
-            }
-            onClick={() => toggleFavoriteHandler(id)}
-          >
-            <i className="fas fa-star"></i>
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 };

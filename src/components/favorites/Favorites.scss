@@ -1,6 +1,16 @@
 .faves {
-  font-size: 25px;
-  font-weight: bold;
-  padding: 15px 0;
-  text-align: center;
+  padding-bottom: 20px;
+
+  &__header {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  &__warn {
+    font-size: 20px;
+    text-align: center;
+    color: #ce2e2e;
+  }
 }

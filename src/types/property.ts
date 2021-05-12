@@ -61,7 +61,7 @@ interface SelectProperty {
 
 interface ToggleFavorite {
   type: PropertyActionTypes.TOGGLE_FAVORITE;
-  payload: string;
+  payload: Property;
 }
 
 export type PropertyAction =

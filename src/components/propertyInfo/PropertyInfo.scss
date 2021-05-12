@@ -36,6 +36,10 @@
     color: white;
 
     &:hover {
+      color: rgb(175, 201, 241);
+    }
+
+    &.active {
       color: yellow;
     }
   }
