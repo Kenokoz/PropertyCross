@@ -49,7 +49,7 @@ const PropertyCards: React.FC<PropertyCardsProps> = ({ showFaves }) => {
               className="property__img"
               onClick={() => selectPropertyHandler(prop)}
             >
-              <img src={imgUrl} alt="" />
+              <img src={imgUrl} alt="image" />
             </Link>
             <div className="property__descr">
               <div className="property__price">

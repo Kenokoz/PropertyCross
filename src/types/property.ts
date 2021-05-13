@@ -4,6 +4,7 @@ export interface PropertyState {
   error: null | string;
   totalResults: number;
   currentPage: number;
+  pageSize: number;
   selectedProperty: Property;
   favorites: Property[];
 }
