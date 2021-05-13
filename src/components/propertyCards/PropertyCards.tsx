@@ -23,12 +23,12 @@ const PropertyCards: React.FC<PropertyCardsProps> = ({ showFaves }) => {
 
   const dispatch = useDispatch();
 
-  const selectPropertyHandler = (id: string) => {
-    dispatch(onSelectProperty(id));
+  const selectPropertyHandler = (prop: Property) => {
+    dispatch(onSelectProperty(prop));
   };
 
   const toggleFavoriteHandler = (prop: Property) => {
-    dispatch(onToggleFavorite(prop));
+    dispatch(onToggleFavorite(prop, favorites));
   };
 
   const amountOfSymbols = 35;
@@ -47,7 +47,7 @@ const PropertyCards: React.FC<PropertyCardsProps> = ({ showFaves }) => {
             <Link
               to={`/locations/${selectedLocation.id}/${id}`}
               className="property__img"
-              onClick={() => selectPropertyHandler(id)}
+              onClick={() => selectPropertyHandler(prop)}
             >
               <img src={imgUrl} alt="" />
             </Link>
@@ -59,7 +59,7 @@ const PropertyCards: React.FC<PropertyCardsProps> = ({ showFaves }) => {
               <Link
                 to={`/locations/${selectedLocation.id}/${id}`}
                 className="property__location"
-                onClick={() => selectPropertyHandler(id)}
+                onClick={() => selectPropertyHandler(prop)}
               >
                 {title.length > amountOfSymbols
                   ? `${title.slice(0, amountOfSymbols)}...`

@@ -56,12 +56,12 @@ interface PageChange {
 
 interface SelectProperty {
   type: PropertyActionTypes.SELECT_PROPERTY;
-  payload: string;
+  payload: Property;
 }
 
 interface ToggleFavorite {
   type: PropertyActionTypes.TOGGLE_FAVORITE;
-  payload: Property;
+  payload: Property[];
 }
 
 export type PropertyAction =

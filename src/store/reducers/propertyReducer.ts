@@ -42,25 +42,11 @@ export const propertyReducer = (
     case PropertyActionTypes.PAGE_CHANGE:
       return { ...state, currentPage: action.payload };
     case PropertyActionTypes.SELECT_PROPERTY: {
-      const property = state.properties.find(
-        prop => prop.id === action.payload
-      );
-      return { ...state, selectedProperty: property };
+      return { ...state, selectedProperty: action.payload };
     }
-    case PropertyActionTypes.TOGGLE_FAVORITE: {
-      return {
-        ...state,
-        favorites: getUpdatedFaves(state.favorites, action.payload),
-      };
-    }
+    case PropertyActionTypes.TOGGLE_FAVORITE:
+      return { ...state, favorites: action.payload };
     default:
       return state;
   }
 };
-
-function getUpdatedFaves(favorites, property) {
-  const isAdded = favorites.find(fav => fav.id === property.id);
-  return isAdded
-    ? favorites.filter(fav => fav.id !== isAdded.id)
-    : [...favorites, property];
-}

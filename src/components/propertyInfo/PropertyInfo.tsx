@@ -26,7 +26,7 @@ const PropertyInfo: React.FC = () => {
   const dispatch = useDispatch();
 
   const toggleFavoriteHandler = (prop: Property) => {
-    dispatch(onToggleFavorite(prop));
+    dispatch(onToggleFavorite(prop, favorites));
   };
 
   const getStyles = id =>
