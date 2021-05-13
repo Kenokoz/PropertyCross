@@ -2,20 +2,19 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 
+import './Pagination.scss';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
 import { onPageChange } from '../../../store/actionCreators/property';
 import { RootState } from '../../../store/reducers/combineReducer';
-import './Pagination.scss';
 
 const Pagination: React.FC = () => {
   const {
-    property: { totalResults, currentPage },
+    property: { totalResults, currentPage, pageSize },
     searchProperty: { selectedLocation },
   } = useTypedSelector((state: RootState) => state);
 
   let allPages = [];
   const getPages = () => {
-    const pageSize = 10;
     const pagesCount = Math.ceil(totalResults / pageSize);
     allPages = [...Array(pagesCount).keys()].map(i => i + 1);
     return currentPage < 3

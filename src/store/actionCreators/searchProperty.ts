@@ -34,6 +34,13 @@ const onShowLocations = (e: FormEvent): SearchPropertyAction => {
   };
 };
 
+const transformLocationName = (locName: string) =>
+  locName
+    .toLowerCase()
+    .split('')
+    .filter(item => item !== ',')
+    .join('');
+
 export const onGoClicked = (
   e: FormEvent,
   locations: Location[],
@@ -41,7 +48,7 @@ export const onGoClicked = (
   history
 ): SearchPropertyAction => {
   const isLocationFound: Location = locations.find(
-    loc => loc.name.toLowerCase() === inputLocationName.toLowerCase()
+    loc => transformLocationName(loc.name) === inputLocationName.toLowerCase()
   );
 
   return isLocationFound

@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
+import './PropertyList.scss';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { getProperties } from '../../store/actionCreators/property';
 import { RootState } from '../../store/reducers/combineReducer';
 import Pagination from './pagination/Pagination';
 import PropertyCards from '../propertyCards/PropertyCards';
-import './PropertyList.scss';
+import Spinner from '../spinner/Spinner';
 
 const PropertyList: React.FC = () => {
   const {
-    property: { loading, error, totalResults, currentPage },
+    property: { loading, error, totalResults, currentPage, pageSize },
     searchProperty: { selectedLocation },
   } = useTypedSelector((state: RootState) => state);
 
@@ -20,23 +21,32 @@ const PropertyList: React.FC = () => {
     dispatch(getProperties(selectedLocation.id, currentPage));
   }, [currentPage]);
 
-  if (loading) {
-    return <h1>Loading...</h1>;
-  }
   if (error) {
     return <h1>Error!</h1>;
   }
+
+  const getAmountOfCurrentProperties = () => {
+    const amount = currentPage * pageSize;
+    return amount > totalResults ? totalResults : amount;
+  };
 
   return (
     <section className="properties">
       <div className="properties__info">
         <div className="properties__count">
+          <strong>{getAmountOfCurrentProperties()}</strong> of{' '}
           <strong>{totalResults}</strong> matches
         </div>
         <Pagination />
       </div>
-      <PropertyCards showFaves={false} />
-      <Pagination />
+      {loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <PropertyCards showFaves={false} />
+          <Pagination />
+        </>
+      )}
     </section>
   );
 };

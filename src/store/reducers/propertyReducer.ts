@@ -10,6 +10,7 @@ const initialState: PropertyState = {
   error: null,
   totalResults: 0,
   currentPage: 1,
+  pageSize: 10,
   selectedProperty: {
     id: '',
     title: '',
@@ -29,7 +30,7 @@ export const propertyReducer = (
 ): PropertyState => {
   switch (action.type) {
     case PropertyActionTypes.FETCH_PROPERTIES:
-      return { ...state };
+      return { ...state, properties: [], loading: true, error: null };
     case PropertyActionTypes.FETCH_PROPERTIES_SUCCESS:
       return {
         ...state,
