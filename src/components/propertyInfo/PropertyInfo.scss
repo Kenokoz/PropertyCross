@@ -33,9 +33,14 @@
     font-size: 35px;
     cursor: pointer;
     transition: color 0.1s linear;
+    color: white;
 
     &:hover {
-      color: yellow;
+      color: rgb(168, 141, 185);
+    }
+
+    &.active {
+      color: $base-color;
     }
   }
 

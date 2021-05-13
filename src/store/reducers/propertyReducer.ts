@@ -20,6 +20,7 @@ const initialState: PropertyState = {
     bathroomNumber: 0,
     summary: '',
   },
+  favorites: [],
 };
 
 export const propertyReducer = (
@@ -41,12 +42,10 @@ export const propertyReducer = (
     case PropertyActionTypes.PAGE_CHANGE:
       return { ...state, currentPage: action.payload };
     case PropertyActionTypes.SELECT_PROPERTY: {
-      const property = [...state.properties].find(
-        prop => prop.id === action.payload
-      );
-
-      return { ...state, selectedProperty: property };
+      return { ...state, selectedProperty: action.payload };
     }
+    case PropertyActionTypes.TOGGLE_FAVORITE:
+      return { ...state, favorites: action.payload };
     default:
       return state;
   }

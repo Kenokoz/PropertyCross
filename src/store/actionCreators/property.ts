@@ -1,4 +1,8 @@
-import { PropertyAction, PropertyActionTypes } from '../../types/property';
+import {
+  Property,
+  PropertyAction,
+  PropertyActionTypes,
+} from '../../types/property';
 
 export const getProperties = (
   locId: string,
@@ -27,7 +31,21 @@ export const onPageChange = (page: number): PropertyAction => ({
   payload: page,
 });
 
-export const onSelectProperty = (propId: string): PropertyAction => ({
+export const onSelectProperty = (property: Property): PropertyAction => ({
   type: PropertyActionTypes.SELECT_PROPERTY,
-  payload: propId,
+  payload: property,
 });
+
+export const onToggleFavorite = (
+  property: Property,
+  favorites: Property[]
+): PropertyAction => {
+  const isAdded = favorites.find(({ id }) => id === property.id);
+  const updatedFaves = isAdded
+    ? favorites.filter(({ id }) => id !== isAdded.id)
+    : [...favorites, property];
+  return {
+    type: PropertyActionTypes.TOGGLE_FAVORITE,
+    payload: updatedFaves,
+  };
+};

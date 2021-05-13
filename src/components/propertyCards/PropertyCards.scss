@@ -1,9 +1,9 @@
-@import '../../../assets/styles/constants.scss';
+@import '../../assets/styles/constants.scss';
 
 .properties {
   &__card {
     position: relative;
-    margin: 0 20px 15px;
+    margin-bottom: 15px;
     display: flex;
     padding: 14px 0 0 20px;
     background-color: #e4e5e8;
@@ -48,7 +48,7 @@
     text-transform: uppercase;
   }
 
-  &__favorite i {
+  &__favorite {
     position: absolute;
     top: 8%;
     right: 2%;
@@ -57,11 +57,15 @@
     color: white;
     cursor: pointer;
 
-    transition: color 0.2s linear;
+    transition: color 0.1s linear;
 
     &:hover {
-      color: yellow;
+      color: rgb(168, 141, 185);
     }
+  }
+
+  &__favorite.active {
+    color: $base-color;
   }
 }
 
@@ -69,12 +73,14 @@
   .properties {
     &__card {
       padding: 14px 0 0 14px;
+      margin: 0 10px 15px;
     }
   }
 
   .property {
     &__descr {
       font-size: 14px;
+      width: 160px;
     }
 
     &__favorite i {
