@@ -1,3 +1,4 @@
+import { Coordinates } from './coordinates';
 import { Location } from './location';
 
 export enum SearchPropertyActionTypes {
@@ -7,6 +8,7 @@ export enum SearchPropertyActionTypes {
   LOCATION_CLICKED = 'LOCATION_CLICKED',
   CLEAR_INPUT_VALUE = 'CLEAR_INPUT_VALUE',
   RESET_SHOW_LOCATIONS = 'RESET_SHOW_LOCATIONS',
+  GET_MY_LOCATION = 'GET_MY_LOCATION',
 }
 
 export interface SearchPropertyState {
@@ -15,6 +17,7 @@ export interface SearchPropertyState {
   locations: Location[];
   selectedLocation: Location;
   recentSearches: Location[];
+  myLocation: Coordinates;
 }
 
 interface ShowLocation {
@@ -45,10 +48,16 @@ interface ResetShowLocations {
   type: SearchPropertyActionTypes.RESET_SHOW_LOCATIONS;
 }
 
+interface GetMyLocation {
+  type: SearchPropertyActionTypes.GET_MY_LOCATION;
+  payload: Coordinates;
+}
+
 export type SearchPropertyAction =
   | ShowLocation
   | InputChanged
   | SelectLocation
   | LocationClicked
   | ClearInputValue
-  | ResetShowLocations;
+  | ResetShowLocations
+  | GetMyLocation;

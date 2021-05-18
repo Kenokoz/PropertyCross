@@ -16,6 +16,7 @@ const initialState: SearchPropertyState = {
   ],
   selectedLocation: { name: '', id: '', count: 0 },
   recentSearches: [{ name: 'Albury, Ware', id: 'albury_ware', count: 1 }],
+  myLocation: { latitude: 0, longitude: 0 },
 };
 
 export const searchPropertyReducer = (
@@ -44,6 +45,8 @@ export const searchPropertyReducer = (
     case SearchPropertyActionTypes.RESET_SHOW_LOCATIONS: {
       return { ...state, showLocations: false };
     }
+    case SearchPropertyActionTypes.GET_MY_LOCATION:
+      return { ...state, myLocation: action.payload };
     default:
       return state;
   }

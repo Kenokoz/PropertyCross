@@ -11,6 +11,7 @@ import Favorites from './components/favorites/Favorites';
 import { store, persistor } from './store';
 import Header from './components/header/Header';
 import PropertyInfo from './components/propertyInfo/propertyInfo';
+import MyLocation from './components/myLocation/MyLocation';
 
 const App = () => (
   <div className="container">
@@ -19,6 +20,7 @@ const App = () => (
     <Route path="/favorites" component={Favorites} />
     <Route path="/locations/:locationName" exact component={PropertyList} />
     <Route path="/locations/:locationName/:id" exact component={PropertyInfo} />
+    <Route path="/mylocation" component={MyLocation} />
   </div>
 );
 
