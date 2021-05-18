@@ -13,9 +13,10 @@
   }
 
   &__item {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     margin-top: 5px;
-    padding-left: 10px;
+    padding: 0 10px;
     font-size: 20px;
     transition: color 0.1s linear;
     text-decoration: none;

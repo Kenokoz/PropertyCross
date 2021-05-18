@@ -3,18 +3,19 @@ import {
   SearchPropertyState,
   SearchPropertyActionTypes,
 } from '../../types/searchProperty';
+import { Location } from '../../types/location';
 
 const initialState: SearchPropertyState = {
   inputValue: '',
   showLocations: false,
   locations: [
-    { name: 'Albury, Guildford', id: 'albury_guildford' },
-    { name: 'Albury, Newbury', id: 'albury_newbury' },
-    { name: 'Albury, Ware', id: 'albury_ware' },
-    { name: 'Shifnal', id: 'shifnal' },
+    { name: 'Albury, Guildford', id: 'albury_guildford', count: 0 },
+    { name: 'Albury, Newbury', id: 'albury_newbury', count: 0 },
+    { name: 'Albury, Ware', id: 'albury_ware', count: 0 },
+    { name: 'Shifnal', id: 'shifnal', count: 0 },
   ],
-  selectedLocation: { name: '', id: '' },
-  recentSearches: [{ name: 'Albury, Ware', id: 'albury_ware' }],
+  selectedLocation: { name: '', id: '', count: 0 },
+  recentSearches: [{ name: 'Albury, Ware', id: 'albury_ware', count: 1 }],
 };
 
 export const searchPropertyReducer = (
@@ -30,13 +31,13 @@ export const searchPropertyReducer = (
       return {
         ...state,
         selectedLocation: action.payload,
-        recentSearches: filterRecentSearches(state, action),
+        recentSearches: filterRecentSearches(state, action.payload),
       };
     case SearchPropertyActionTypes.LOCATION_CLICKED:
       return {
         ...state,
         selectedLocation: action.payload,
-        recentSearches: filterRecentSearches(state, action),
+        recentSearches: filterRecentSearches(state, action.payload),
       };
     case SearchPropertyActionTypes.CLEAR_INPUT_VALUE:
       return { ...state, inputValue: '' };
@@ -48,10 +49,18 @@ export const searchPropertyReducer = (
   }
 };
 
-function filterRecentSearches(state: SearchPropertyState, action) {
+function filterRecentSearches(state: SearchPropertyState, location: Location) {
   const oldSearches = [...state.recentSearches];
   const existSearch = oldSearches.find(item => {
-    return item.id === action.payload.id;
+    if (item.id === location.id) {
+      item.count += 1;
+      return item;
+    }
   });
-  return existSearch ? oldSearches : [...oldSearches, { ...action.payload }];
+  if (existSearch) {
+    return oldSearches;
+  } else {
+    location.count += 1;
+    return [...oldSearches, { ...location }];
+  }
 }

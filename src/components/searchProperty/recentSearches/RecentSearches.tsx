@@ -19,7 +19,7 @@ const RecentSearches: React.FC<RecentSearchesProps> = ({ onClicked }) => {
     <div className="list">
       <div className="list__title">Recent searches:</div>
       <div className="list__wrapper">
-        {recentSearches.map(({ name, id }) => (
+        {recentSearches.map(({ name, id, count }) => (
           <Link
             key={id}
             className="list__item"
@@ -27,6 +27,7 @@ const RecentSearches: React.FC<RecentSearchesProps> = ({ onClicked }) => {
             onClick={() => onClicked({ name, id })}
           >
             {name}
+            <span className="list__count">({count})</span>
           </Link>
         ))}
       </div>
