@@ -17,12 +17,12 @@ const LocationList: React.FC<LocationListProps> = ({
   <div className="list">
     <div className="list__title">Please select a location below:</div>
     <div className="list__wrapper">
-      {locations.map(({ id, name }) => (
+      {locations.map(({ id, name, count }) => (
         <Link
           className="list__item"
           to={`locations/${id}`}
           key={id}
-          onClick={() => onClicked({ name, id })}
+          onClick={() => onClicked({ name, id, count })}
         >
           {name}
         </Link>

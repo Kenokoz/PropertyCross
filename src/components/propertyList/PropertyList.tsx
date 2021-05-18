@@ -8,6 +8,7 @@ import { RootState } from '../../store/reducers/combineReducer';
 import Pagination from './pagination/Pagination';
 import PropertyCards from '../propertyCards/PropertyCards';
 import Spinner from '../spinner/Spinner';
+import Error from '../error/Error';
 
 const PropertyList: React.FC = () => {
   const {
@@ -22,7 +23,7 @@ const PropertyList: React.FC = () => {
   }, [currentPage]);
 
   if (error) {
-    return <h1>Error!</h1>;
+    return <Error />;
   }
 
   const getAmountOfCurrentProperties = () => {
